@@ -12,74 +12,14 @@
   padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f3f7fc;
+  background:#f5f8fc;
   color:#172033;
-  line-height:1.6;
-}
-
-/* ================= FLAG ================= */
-
-.flag{
-  width:52px;
-  height:35px;
-  position:relative;
-  overflow:hidden;
-  border-radius:4px;
-  box-shadow:0 3px 10px rgba(0,0,0,.18);
-  flex-shrink:0;
-}
-
-.flag .orange{
-  height:33.33%;
-  background:#ff9933;
-}
-
-.flag .white{
-  height:33.33%;
-  background:#fff;
-  position:relative;
-}
-
-.flag .green{
-  height:33.33%;
-  background:#138808;
-}
-
-/* Ashoka Chakra */
-.chakra{
-  width:20px;
-  height:20px;
-  border:2px solid #000080;
-  border-radius:50%;
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-}
-
-.chakra:before{
-  content:"";
-  position:absolute;
-  width:2px;
-  height:18px;
-  background:#000080;
-  left:7px;
-  top:-1px;
-  box-shadow:
-    0 0 0 #000080;
-}
-
-.chakra:after{
-  content:"";
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#000080;
-  left:6px;
-  top:6px;
 }
 
 /* ================= HEADER ================= */
@@ -88,25 +28,38 @@ header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(255,255,255,.96);
-  border-bottom:1px solid #e2e8f0;
-  padding:14px 6%;
+  height:72px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 4px 18px rgba(15,23,42,.06);
+  padding:0 6%;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #e5eaf1;
+  box-shadow:0 5px 25px rgba(15,23,42,.07);
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#ff9933,#1769e0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:22px;
+  box-shadow:0 8px 18px rgba(23,105,224,.22);
 }
 
 .logo h1{
   font-size:25px;
   color:#123f75;
-  letter-spacing:-.5px;
 }
 
 .logo h1 span{
@@ -117,10 +70,10 @@ header{
   display:flex;
   align-items:center;
   gap:7px;
+  padding:8px 14px;
+  border-radius:30px;
   background:#ecfdf5;
   color:#15803d;
-  padding:7px 13px;
-  border-radius:30px;
   font-size:13px;
   font-weight:bold;
 }
@@ -128,45 +81,48 @@ header{
 .status-dot{
   width:8px;
   height:8px;
-  border-radius:50%;
   background:#22c55e;
+  border-radius:50%;
 }
 
 /* ================= HERO ================= */
 
 .hero{
+  min-height:500px;
   padding:75px 7%;
-  min-height:450px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:40px;
+  gap:45px;
   background:
-    radial-gradient(circle at 90% 15%,#dbeafe 0,transparent 28%),
-    radial-gradient(circle at 5% 90%,#dcfce7 0,transparent 25%),
-    linear-gradient(135deg,#ffffff,#edf5ff);
+    radial-gradient(circle at 85% 15%,#dbeafe 0,transparent 28%),
+    radial-gradient(circle at 10% 85%,#dcfce7 0,transparent 25%),
+    linear-gradient(135deg,#ffffff,#eef5ff);
 }
 
 .hero-content{
   max-width:680px;
 }
 
-.badge{
-  display:inline-block;
-  padding:8px 15px;
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 16px;
   border-radius:30px;
   background:#fff7ed;
-  color:#c2410c;
   border:1px solid #fed7aa;
+  color:#c2410c;
   font-size:13px;
   font-weight:bold;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .hero h2{
-  font-size:clamp(40px,6vw,68px);
-  line-height:1.05;
+  font-size:clamp(42px,6vw,70px);
+  line-height:1.02;
   color:#102f52;
+  letter-spacing:-2px;
 }
 
 .hero h2 span{
@@ -174,26 +130,27 @@ header{
 }
 
 .hero p{
-  margin-top:20px;
+  max-width:610px;
+  margin-top:22px;
   color:#64748b;
-  font-size:17px;
-  max-width:620px;
+  font-size:18px;
+  line-height:1.7;
 }
 
 .hero-buttons{
   display:flex;
-  gap:12px;
   flex-wrap:wrap;
-  margin-top:28px;
+  gap:12px;
+  margin-top:30px;
 }
 
 button{
   border:0;
-  border-radius:11px;
-  padding:13px 19px;
+  border-radius:12px;
+  padding:13px 20px;
+  font-weight:bold;
   cursor:pointer;
   font-size:14px;
-  font-weight:bold;
   transition:.2s;
 }
 
@@ -202,183 +159,258 @@ button:hover{
 }
 
 .primary{
-  background:#1769e0;
   color:white;
-  box-shadow:0 9px 22px rgba(23,105,224,.25);
+  background:linear-gradient(135deg,#1769e0,#124da5);
+  box-shadow:0 10px 25px rgba(23,105,224,.25);
 }
 
 .secondary{
-  background:white;
   color:#174a8b;
-  border:1px solid #d5dfeb;
+  background:white;
+  border:1px solid #d9e2ee;
 }
 
-.hero-visual{
-  width:270px;
-  height:270px;
-  border-radius:50%;
+.hero-card{
+  width:300px;
+  min-height:300px;
+  border-radius:30px;
   background:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 25px 60px rgba(30,64,175,.15);
-  border:8px solid #eef5ff;
-  font-size:100px;
+  border:1px solid #e1e8f2;
+  box-shadow:0 25px 70px rgba(30,64,175,.15);
+  padding:28px;
   flex-shrink:0;
 }
 
-/* ================= QUICK STATS ================= */
+.hero-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.hero-icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:18px;
+  background:#eaf2ff;
+  font-size:28px;
+}
+
+.live{
+  font-size:11px;
+  color:#15803d;
+  background:#ecfdf5;
+  padding:6px 9px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.hero-card h3{
+  color:#123f75;
+  font-size:20px;
+}
+
+.mini-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  margin-top:12px;
+  border-radius:13px;
+  background:#f7f9fc;
+  font-size:13px;
+}
+
+.mini-item-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:white;
+}
+
+/* ================= DASHBOARD STATS ================= */
 
 .stats{
-  max-width:1050px;
+  max-width:1080px;
   margin:-30px auto 0;
   padding:0 18px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:16px;
   position:relative;
 }
 
 .stat{
   background:white;
-  padding:20px;
-  border-radius:17px;
-  border:1px solid #e2e8f0;
-  box-shadow:0 12px 35px rgba(15,23,42,.07);
+  border:1px solid #e3e9f1;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 14px 40px rgba(15,23,42,.07);
 }
 
 .stat-icon{
-  font-size:25px;
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  background:#eef5ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
 }
 
 .stat strong{
   display:block;
-  margin-top:7px;
+  margin-top:12px;
   font-size:18px;
   color:#123f75;
 }
 
 .stat p{
-  font-size:13px;
+  margin-top:4px;
   color:#64748b;
+  font-size:13px;
 }
 
 /* ================= MAIN ================= */
 
 .container{
-  max-width:1050px;
+  max-width:1080px;
   margin:auto;
-  padding:65px 18px;
+  padding:70px 18px;
 }
 
-.section-heading{
+.heading{
   text-align:center;
-  margin-bottom:35px;
+  margin-bottom:38px;
 }
 
-.section-heading h2{
-  font-size:34px;
+.heading .small{
+  color:#1769e0;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+}
+
+.heading h2{
+  font-size:36px;
+  margin-top:7px;
   color:#102f52;
 }
 
-.section-heading p{
+.heading p{
   color:#64748b;
-  margin-top:5px;
+  margin-top:7px;
 }
 
 /* ================= CARDS ================= */
 
 .card{
   background:white;
-  border-radius:22px;
-  border:1px solid #e2e8f0;
-  padding:28px;
-  margin-bottom:22px;
-  box-shadow:0 15px 45px rgba(15,23,42,.06);
+  border:1px solid #e1e8f0;
+  border-radius:24px;
+  padding:30px;
+  margin-bottom:23px;
+  box-shadow:0 15px 50px rgba(15,23,42,.06);
 }
 
-.card-header{
+.card-heading{
   display:flex;
   align-items:center;
-  gap:13px;
-  margin-bottom:20px;
+  gap:14px;
+  margin-bottom:24px;
 }
 
-.number{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  background:#eaf2ff;
+.step{
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#eaf2ff,#dbeafe);
   color:#1769e0;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:bold;
-  font-size:17px;
 }
 
-.card-header h3{
+.card-heading h3{
   color:#123f75;
   font-size:20px;
 }
 
+.card-heading p{
+  color:#64748b;
+  font-size:12px;
+  margin-top:2px;
+}
+
 /* ================= UPLOAD ================= */
 
-.upload-box{
-  padding:40px 20px;
+.upload{
+  border:2px dashed #9dbfe9;
+  border-radius:20px;
+  padding:42px 22px;
   text-align:center;
-  border:2px dashed #9fc3f4;
-  border-radius:18px;
-  background:linear-gradient(135deg,#f8fbff,#eef6ff);
+  background:
+    radial-gradient(circle at 50% 0,#edf6ff,transparent 55%),
+    #f8fbff;
 }
 
 .upload-icon{
-  width:68px;
-  height:68px;
+  width:75px;
+  height:75px;
+  margin:auto;
+  border-radius:22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:0 auto 14px;
   background:#dbeafe;
-  border-radius:18px;
-  font-size:32px;
+  font-size:35px;
 }
 
-.upload-box h3{
+.upload h3{
+  margin-top:16px;
   color:#174a8b;
 }
 
-.upload-box p{
+.upload p{
   color:#64748b;
-  font-size:14px;
   margin-top:5px;
+  font-size:14px;
 }
 
-input[type="file"]{
+.file-input{
   width:100%;
-  max-width:430px;
-  margin-top:18px;
-  padding:10px;
+  max-width:440px;
+  margin-top:20px;
+  padding:11px;
+  border:1px solid #d6dee9;
+  border-radius:10px;
   background:white;
-  border:1px solid #d4dce7;
-  border-radius:9px;
 }
 
 .preview{
   display:none;
   max-width:100%;
-  max-height:320px;
+  max-height:330px;
   margin:20px auto 0;
-  border-radius:14px;
-  border:1px solid #dbe2ea;
+  border-radius:15px;
+  border:1px solid #dbe3ed;
 }
 
 /* ================= FORM ================= */
 
 label{
   display:block;
-  margin:18px 0 7px;
+  font-size:14px;
   font-weight:bold;
+  margin:18px 0 8px;
   color:#334155;
 }
 
@@ -386,12 +418,12 @@ select,
 textarea,
 .text-input{
   width:100%;
-  padding:13px;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
+  padding:14px;
+  border:1px solid #ccd6e2;
+  border-radius:11px;
+  background:white;
   font-size:14px;
   outline:none;
-  background:white;
 }
 
 select:focus,
@@ -402,25 +434,103 @@ textarea:focus,
 }
 
 textarea{
-  min-height:120px;
+  min-height:130px;
   resize:vertical;
 }
 
-/* ================= RESULT ================= */
+/* ================= BUTTONS ================= */
+
+.blue{
+  background:#1769e0;
+  color:white;
+  margin-top:18px;
+}
+
+.green{
+  background:#16803c;
+  color:white;
+  margin-top:18px;
+}
+
+.orange{
+  background:#ea7500;
+  color:white;
+  margin-top:18px;
+}
+
+/* ================= LOCATION ================= */
+
+.location-panel{
+  background:linear-gradient(135deg,#f0fdf4,#f7fff9);
+  border:1px solid #bbf7d0;
+  border-radius:19px;
+  padding:22px;
+}
+
+.location-top{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.location-icon{
+  width:58px;
+  height:58px;
+  border-radius:17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#dcfce7;
+  font-size:27px;
+}
+
+.location-top h4{
+  color:#166534;
+  font-size:17px;
+}
+
+.location-top p{
+  color:#64748b;
+  font-size:13px;
+  margin-top:3px;
+}
+
+.address{
+  display:none;
+  margin-top:18px;
+  padding:17px;
+  background:white;
+  border-radius:14px;
+  border:1px solid #d9f2df;
+}
+
+.address-title{
+  color:#166534;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.coordinates{
+  color:#64748b;
+  font-size:12px;
+  margin-top:8px;
+}
+
+/* ================= RESULTS ================= */
 
 .result{
   display:none;
   margin-top:20px;
-  padding:20px;
-  border-radius:15px;
+  padding:21px;
+  border-radius:17px;
   background:#f5f9ff;
   border:1px solid #bfdbfe;
 }
 
 .result-title{
   color:#123f75;
-  font-weight:bold;
   font-size:18px;
+  font-weight:bold;
   margin-bottom:10px;
 }
 
@@ -430,82 +540,38 @@ textarea{
   border-radius:20px;
   background:#fee2e2;
   color:#b91c1c;
-  font-size:12px;
+  font-size:11px;
   font-weight:bold;
-}
-
-/* ================= LOCATION ================= */
-
-.location-box{
-  display:flex;
-  gap:15px;
-  align-items:center;
-  padding:18px;
-  background:#f0fdf4;
-  border:1px solid #bbf7d0;
-  border-radius:15px;
-}
-
-.location-icon{
-  width:52px;
-  height:52px;
-  background:#dcfce7;
-  border-radius:14px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:25px;
-  flex-shrink:0;
-}
-
-/* ================= BUTTON COLORS ================= */
-
-.blue{
-  background:#1769e0;
-  color:white;
-  margin-top:17px;
-}
-
-.green{
-  background:#16803c;
-  color:white;
-  margin-top:17px;
-}
-
-.orange{
-  background:#ea7500;
-  color:white;
-  margin-top:17px;
 }
 
 /* ================= TRACK ================= */
 
-.track-row{
+.track-area{
   display:flex;
   gap:10px;
-  margin-top:15px;
+  margin-top:18px;
 }
 
-.track-row input{
+.track-area input{
   flex:1;
 }
 
-.track-row button{
-  margin-top:0;
+.track-area button{
+  margin:0;
 }
 
 .timeline{
-  margin-top:20px;
-  padding-left:28px;
   position:relative;
+  margin-top:22px;
+  padding-left:30px;
 }
 
 .timeline:before{
   content:"";
   position:absolute;
   left:7px;
-  top:5px;
-  bottom:5px;
+  top:6px;
+  bottom:7px;
   width:3px;
   background:#dbeafe;
 }
@@ -517,8 +583,8 @@ textarea{
 
 .timeline-dot{
   position:absolute;
-  left:-28px;
-  top:4px;
+  left:-30px;
+  top:3px;
   width:18px;
   height:18px;
   border-radius:50%;
@@ -531,8 +597,9 @@ textarea{
 }
 
 .timeline-item p{
-  font-size:13px;
   color:#64748b;
+  font-size:13px;
+  margin-top:3px;
 }
 
 /* ================= FOOTER ================= */
@@ -540,26 +607,26 @@ textarea{
 footer{
   background:#102f52;
   color:white;
+  padding:45px 20px;
   text-align:center;
-  padding:40px 20px;
 }
 
 footer h3{
-  font-size:23px;
+  font-size:24px;
 }
 
 footer p{
   color:#cbd5e1;
-  margin-top:7px;
   font-size:13px;
+  margin-top:7px;
 }
 
 /* ================= MOBILE ================= */
 
-@media(max-width:700px){
+@media(max-width:760px){
 
   header{
-    padding:12px 16px;
+    padding:0 17px;
   }
 
   .status{
@@ -568,18 +635,17 @@ footer p{
 
   .hero{
     padding:55px 20px;
-    text-align:center;
     flex-direction:column;
-  }
-
-  .hero-visual{
-    width:190px;
-    height:190px;
-    font-size:70px;
+    text-align:center;
   }
 
   .hero-buttons{
     justify-content:center;
+  }
+
+  .hero-card{
+    width:100%;
+    max-width:340px;
   }
 
   .stats{
@@ -587,15 +653,23 @@ footer p{
     margin-top:20px;
   }
 
+  .container{
+    padding:55px 15px;
+  }
+
+  .heading h2{
+    font-size:29px;
+  }
+
   .card{
     padding:20px;
   }
 
-  .track-row{
+  .track-area{
     flex-direction:column;
   }
 
-  .track-row button{
+  .track-area button{
     margin-top:5px;
   }
 }
@@ -610,17 +684,7 @@ footer p{
 
   <div class="logo">
 
-    <div class="flag">
-
-      <div class="orange"></div>
-
-      <div class="white">
-        <div class="chakra"></div>
-      </div>
-
-      <div class="green"></div>
-
-    </div>
+    <div class="logo-mark">🏙️</div>
 
     <h1>Nagar<span>-AI</span></h1>
 
@@ -640,33 +704,34 @@ footer p{
 
   <div class="hero-content">
 
-    <div class="badge">
+    <div class="hero-badge">
       🇮🇳 SMART CIVIC INDIA
     </div>
 
     <h2>
-      Make Your City
+      Report Problems.
       <br>
-      <span>Better With AI.</span>
+      <span>Improve Your City.</span>
     </h2>
 
     <p>
-      Report potholes, garbage, broken streetlights,
-      water leakage and other civic problems quickly
-      using Nagar-AI.
+      Nagar-AI makes civic complaint reporting
+      faster and easier. Upload a photo, identify
+      the problem, capture its location and create
+      a structured complaint.
     </p>
 
     <div class="hero-buttons">
 
       <button
         class="primary"
-        onclick="scrollToReport()">
+        onclick="goReport()">
         📸 Report a Problem
       </button>
 
       <button
         class="secondary"
-        onclick="scrollToTrack()">
+        onclick="goTrack()">
         🔎 Track Complaint
       </button>
 
@@ -674,8 +739,40 @@ footer p{
 
   </div>
 
-  <div class="hero-visual">
-    🏙️
+
+  <div class="hero-card">
+
+    <div class="hero-card-top">
+
+      <div class="hero-icon">
+        🤖
+      </div>
+
+      <div class="live">
+        ● LIVE
+      </div>
+
+    </div>
+
+    <h3>
+      Smart Civic Assistant
+    </h3>
+
+    <div class="mini-item">
+      <div class="mini-item-icon">📷</div>
+      AI Image Analysis
+    </div>
+
+    <div class="mini-item">
+      <div class="mini-item-icon">📍</div>
+      Location Detection
+    </div>
+
+    <div class="mini-item">
+      <div class="mini-item-icon">🎫</div>
+      Complaint Tracking
+    </div>
+
   </div>
 
 </section>
@@ -686,21 +783,41 @@ footer p{
 <section class="stats">
 
   <div class="stat">
+
     <div class="stat-icon">🤖</div>
+
     <strong>AI Detection</strong>
-    <p>Identify civic problems from images.</p>
+
+    <p>
+      Identify civic issues from images.
+    </p>
+
   </div>
 
+
   <div class="stat">
+
     <div class="stat-icon">📍</div>
-    <strong>GPS Location</strong>
-    <p>Capture the exact reporting location.</p>
+
+    <strong>Smart Location</strong>
+
+    <p>
+      Capture the location of the issue.
+    </p>
+
   </div>
 
+
   <div class="stat">
+
     <div class="stat-icon">🎫</div>
-    <strong>Track Complaint</strong>
-    <p>Follow your complaint status.</p>
+
+    <strong>Easy Tracking</strong>
+
+    <p>
+      Track your complaint anytime.
+    </p>
+
   </div>
 
 </section>
@@ -710,12 +827,18 @@ footer p{
 
 <main class="container">
 
-  <div class="section-heading">
+  <div class="heading">
 
-    <h2>Report a Civic Problem</h2>
+    <div class="small">
+      CITIZEN SERVICES
+    </div>
+
+    <h2>
+      Report a Civic Issue
+    </h2>
 
     <p>
-      Upload • Locate • Generate • Track
+      Follow four simple steps to create your complaint.
     </p>
 
   </div>
@@ -723,32 +846,47 @@ footer p{
 
   <!-- ================= STEP 1 ================= -->
 
-  <section class="card" id="report">
+  <section
+    class="card"
+    id="report">
 
-    <div class="card-header">
+    <div class="card-heading">
 
-      <div class="number">01</div>
+      <div class="step">
+        01
+      </div>
 
-      <h3>Upload Problem Image</h3>
+      <div>
+
+        <h3>
+          Upload Problem Image
+        </h3>
+
+        <p>
+          Show us what needs to be fixed.
+        </p>
+
+      </div>
 
     </div>
 
-    <div class="upload-box">
+
+    <div class="upload">
 
       <div class="upload-icon">
         📸
       </div>
 
       <h3>
-        Show us the problem
+        Upload a photo
       </h3>
 
       <p>
-        Upload a photo of the pothole,
-        garbage, streetlight or other issue.
+        Take a photo or choose one from your device.
       </p>
 
       <input
+        class="file-input"
         type="file"
         id="imageInput"
         accept="image/*"
@@ -756,7 +894,7 @@ footer p{
       >
 
       <img
-        id="imagePreview"
+        id="preview"
         class="preview"
         alt="Uploaded civic problem"
       >
@@ -771,8 +909,9 @@ footer p{
 
     </div>
 
+
     <div
-      id="analysisResult"
+      id="analysis"
       class="result">
     </div>
 
@@ -783,44 +922,77 @@ footer p{
 
   <section class="card">
 
-    <div class="card-header">
+    <div class="card-heading">
 
-      <div class="number">02</div>
-
-      <h3>Capture Location</h3>
-
-    </div>
-
-    <div class="location-box">
-
-      <div class="location-icon">
-        📍
+      <div class="step">
+        02
       </div>
 
       <div>
 
-        <strong>
-          Your location helps us route the complaint
-        </strong>
+        <h3>
+          Location
+        </h3>
 
-        <p style="color:#64748b;font-size:13px">
-          Allow browser location access to
-          capture your coordinates.
+        <p>
+          Tell us where the problem is located.
         </p>
 
       </div>
 
     </div>
 
-    <button
-      class="green"
-      onclick="getLocation()">
-      📍 Capture My Location
-    </button>
 
-    <div
-      id="locationResult"
-      class="result">
+    <div class="location-panel">
+
+      <div class="location-top">
+
+        <div class="location-icon">
+          📍
+        </div>
+
+        <div>
+
+          <h4>
+            Get Full Location
+          </h4>
+
+          <p>
+            Allow location access to identify the
+            reporting area.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="green"
+        onclick="getLocation()">
+        📍 Detect My Location
+      </button>
+
+
+      <div
+        id="address"
+        class="address">
+
+        <div class="address-title">
+          📍 Detected Address
+        </div>
+
+        <div id="addressText">
+          Getting your address...
+        </div>
+
+        <div
+          id="coordinates"
+          class="coordinates">
+        </div>
+
+      </div>
+
     </div>
 
   </section>
@@ -830,13 +1002,26 @@ footer p{
 
   <section class="card">
 
-    <div class="card-header">
+    <div class="card-heading">
 
-      <div class="number">03</div>
+      <div class="step">
+        03
+      </div>
 
-      <h3>Create Smart Complaint</h3>
+      <div>
+
+        <h3>
+          Create Complaint
+        </h3>
+
+        <p>
+          Add the details and generate your complaint.
+        </p>
+
+      </div>
 
     </div>
+
 
     <label>
       Problem Category
@@ -856,24 +1041,24 @@ footer p{
 
 
     <label>
-      Describe the Problem
+      Problem Description
     </label>
 
     <textarea
       id="description"
-      placeholder="Example: There is a large pothole near the main road..."
-    ></textarea>
+      placeholder="Describe the problem clearly...">
+    </textarea>
 
 
     <button
       class="orange"
       onclick="generateComplaint()">
-      ✨ Generate Complaint
+      ✨ Generate Smart Complaint
     </button>
 
 
     <div
-      id="complaintResult"
+      id="complaint"
       class="result">
     </div>
 
@@ -882,26 +1067,37 @@ footer p{
 
   <!-- ================= STEP 4 ================= -->
 
-  <section class="card" id="track">
+  <section
+    class="card"
+    id="track">
 
-    <div class="card-header">
+    <div class="card-heading">
 
-      <div class="number">04</div>
+      <div class="step">
+        04
+      </div>
 
-      <h3>Track Your Complaint</h3>
+      <div>
+
+        <h3>
+          Track Complaint
+        </h3>
+
+        <p>
+          Check the progress of your complaint.
+        </p>
+
+      </div>
 
     </div>
 
-    <p style="color:#64748b">
-      Enter your complaint ID to check its current status.
-    </p>
 
-    <div class="track-row">
+    <div class="track-area">
 
       <input
         class="text-input"
         id="trackId"
-        placeholder="Example: NGA-123456"
+        placeholder="Enter Complaint ID e.g. NGA-123456"
       >
 
       <button
@@ -927,20 +1123,45 @@ footer p{
 
 <footer>
 
-  <h3>🇮🇳 Nagar-AI</h3>
+  <h3>
+    🇮🇳 Nagar-AI
+  </h3>
 
   <p>
     AI-powered civic complaint platform
   </p>
 
   <p>
-    Building cleaner, safer and smarter cities.
+    Making cities cleaner, safer and smarter.
   </p>
 
 </footer>
 
 
 <script>
+
+/* ================= SCROLL ================= */
+
+function goReport(){
+
+  document
+    .getElementById("report")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+function goTrack(){
+
+  document
+    .getElementById("track")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
 
 /* ================= IMAGE PREVIEW ================= */
 
@@ -950,24 +1171,30 @@ function previewImage(){
     document.getElementById("imageInput");
 
   const preview =
-    document.getElementById("imagePreview");
+    document.getElementById("preview");
 
-  if(input.files.length === 0){
-    preview.style.display = "none";
+  if(!input.files.length){
+
+    preview.style.display="none";
+
     return;
   }
 
   const reader =
     new FileReader();
 
-  reader.onload = function(event){
+  reader.onload=function(event){
 
-    preview.src = event.target.result;
-    preview.style.display = "block";
+    preview.src =
+      event.target.result;
+
+    preview.style.display =
+      "block";
 
   };
 
   reader.readAsDataURL(input.files[0]);
+
 }
 
 
@@ -979,16 +1206,19 @@ function analyzeImage(){
     document.getElementById("imageInput");
 
   const result =
-    document.getElementById("analysisResult");
+    document.getElementById("analysis");
 
-  if(input.files.length === 0){
+  if(!input.files.length){
 
-    alert("Please upload an image first.");
+    alert(
+      "Please upload an image first."
+    );
 
     return;
   }
 
-  result.style.display = "block";
+  result.style.display =
+    "block";
 
   result.innerHTML = `
 
@@ -996,36 +1226,51 @@ function analyzeImage(){
       🤖 AI Analysis Complete
     </div>
 
-    <strong>Detected Category:</strong>
+    <strong>
+      Detected Category:
+    </strong>
+
     Road / Pothole
 
     <br>
 
-    <strong>Priority:</strong>
-    <span class="priority">HIGH</span>
+    <strong>
+      Priority:
+    </strong>
+
+    <span class="priority">
+      HIGH
+    </span>
 
     <br>
 
-    <strong>Confidence:</strong>
+    <strong>
+      Confidence:
+    </strong>
+
     94%
 
     <br>
 
-    <strong>Recommended Department:</strong>
+    <strong>
+      Suggested Department:
+    </strong>
+
     Municipal Road Department
 
     <br><br>
 
     <small style="color:#64748b">
-      AI analysis shown here is a front-end demonstration.
-      A real computer-vision model can be connected
-      through your backend later.
+      This is the current front-end demonstration.
+      Your real AI model can be connected through
+      the backend later.
     </small>
 
   `;
 
   document.getElementById("category").value =
     "Road / Pothole";
+
 }
 
 
@@ -1033,18 +1278,28 @@ function analyzeImage(){
 
 function getLocation(){
 
-  const result =
-    document.getElementById("locationResult");
+  const address =
+    document.getElementById("address");
 
-  result.style.display = "block";
+  const addressText =
+    document.getElementById("addressText");
 
-  result.innerHTML =
-    "📡 Getting your location...";
+  const coordinates =
+    document.getElementById("coordinates");
+
+  address.style.display =
+    "block";
+
+  addressText.innerHTML =
+    "📡 Detecting your location...";
+
+  coordinates.innerHTML =
+    "";
 
   if(!navigator.geolocation){
 
-    result.innerHTML =
-      "❌ Geolocation is not supported by this browser.";
+    addressText.innerHTML =
+      "❌ Location is not supported by this browser.";
 
     return;
   }
@@ -1059,46 +1314,40 @@ function getLocation(){
       const lon =
         position.coords.longitude;
 
-      result.innerHTML = `
+      coordinates.innerHTML =
+        "Coordinates: " +
+        lat.toFixed(6) +
+        ", " +
+        lon.toFixed(6);
 
-        <div class="result-title">
-          📍 Location Captured
-        </div>
+      addressText.innerHTML =
+        "📍 Location coordinates captured successfully.";
 
-        <strong>Latitude:</strong>
-        ${lat.toFixed(6)}
-
-        <br>
-
-        <strong>Longitude:</strong>
-        ${lon.toFixed(6)}
-
-        <br><br>
-
-        <small style="color:#64748b">
-          Location captured successfully.
-        </small>
-
-      `;
+      /*
+       * A full street address requires reverse geocoding.
+       * This demo intentionally does not pretend that
+       * GPS coordinates are a full postal address.
+       */
 
     },
 
     function(){
 
-      result.innerHTML = `
-
-        <strong>⚠️ Location permission denied.</strong>
-
-        <br>
-
-        Please allow location access
-        in your browser and try again.
-
+      addressText.innerHTML = `
+        ⚠️ Location permission was not provided.
+        Please allow location access in Chrome and try again.
       `;
 
+    },
+
+    {
+      enableHighAccuracy:true,
+      timeout:10000,
+      maximumAge:0
     }
 
   );
+
 }
 
 
@@ -1113,9 +1362,9 @@ function generateComplaint(){
     document.getElementById("description").value.trim();
 
   const result =
-    document.getElementById("complaintResult");
+    document.getElementById("complaint");
 
-  if(description === ""){
+  if(description===""){
 
     alert(
       "Please describe the problem first."
@@ -1128,7 +1377,7 @@ function generateComplaint(){
     "NGA-" +
     Math.floor(
       100000 +
-      Math.random() * 900000
+      Math.random()*900000
     );
 
   localStorage.setItem(
@@ -1136,30 +1385,44 @@ function generateComplaint(){
     id
   );
 
-  result.style.display = "block";
+  result.style.display =
+    "block";
 
   result.innerHTML = `
 
     <div class="result-title">
-      ✅ Complaint Generated Successfully
+      ✅ Complaint Created
     </div>
 
-    <strong>Complaint ID:</strong>
+    <strong>
+      Complaint ID:
+    </strong>
+
     ${id}
 
     <br><br>
 
-    <strong>Category:</strong>
+    <strong>
+      Category:
+    </strong>
+
     ${category}
 
     <br><br>
 
-    <strong>Priority:</strong>
-    <span class="priority">HIGH</span>
+    <strong>
+      Priority:
+    </strong>
+
+    <span class="priority">
+      HIGH
+    </span>
 
     <br><br>
 
-    <strong>Description:</strong>
+    <strong>
+      Description:
+    </strong>
 
     <br>
 
@@ -1167,13 +1430,16 @@ function generateComplaint(){
 
     <br><br>
 
-    <strong>Department:</strong>
+    <strong>
+      Department:
+    </strong>
+
     Concerned Municipal Department
 
     <br><br>
 
     <small style="color:#64748b">
-      Save your Complaint ID to track the complaint later.
+      Save your Complaint ID to track this complaint.
     </small>
 
   `;
@@ -1186,23 +1452,25 @@ function generateComplaint(){
 function trackComplaint(){
 
   const id =
-    document.getElementById("trackId")
+    document
+      .getElementById("trackId")
       .value
       .trim();
 
   const result =
     document.getElementById("trackResult");
 
-  if(id === ""){
+  if(id===""){
 
     alert(
-      "Please enter a complaint ID."
+      "Please enter your Complaint ID."
     );
 
     return;
   }
 
-  result.style.display = "block";
+  result.style.display =
+    "block";
 
   result.innerHTML = `
 
@@ -1210,7 +1478,10 @@ function trackComplaint(){
       🎫 Complaint Status
     </div>
 
-    <strong>Complaint ID:</strong>
+    <strong>
+      Complaint ID:
+    </strong>
+
     ${id}
 
     <div class="timeline">
@@ -1219,10 +1490,12 @@ function trackComplaint(){
 
         <div class="timeline-dot"></div>
 
-        <h4>Complaint Submitted</h4>
+        <h4>
+          Complaint Submitted
+        </h4>
 
         <p>
-          Your complaint has been registered.
+          Complaint has been registered.
         </p>
 
       </div>
@@ -1232,10 +1505,12 @@ function trackComplaint(){
 
         <div class="timeline-dot"></div>
 
-        <h4>AI Analysis Completed</h4>
+        <h4>
+          AI Analysis Completed
+        </h4>
 
         <p>
-          The civic problem has been categorized.
+          Problem category and priority identified.
         </p>
 
       </div>
@@ -1245,7 +1520,9 @@ function trackComplaint(){
 
         <div class="timeline-dot"></div>
 
-        <h4>Department Assigned</h4>
+        <h4>
+          Department Assigned
+        </h4>
 
         <p>
           Complaint sent to the concerned department.
@@ -1261,10 +1538,12 @@ function trackComplaint(){
           style="background:#94a3b8;border-color:#e2e8f0">
         </div>
 
-        <h4>Action Pending</h4>
+        <h4>
+          Action Pending
+        </h4>
 
         <p>
-          Awaiting municipal department action.
+          Waiting for municipal action.
         </p>
 
       </div>
@@ -1275,30 +1554,7 @@ function trackComplaint(){
 
 }
 
-
-/* ================= NAVIGATION ================= */
-
-function scrollToReport(){
-
-  document
-    .getElementById("report")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-function scrollToTrack(){
-
-  document
-    .getElementById("track")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
 </script>
 
 </body>
-  </html>
+</html>
