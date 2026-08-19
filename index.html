@@ -1,12 +1,1084 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Nagar-AI Test</title>
-</head>
-<body>
-  <h1>Nagar-AI is working! 🇮🇳</h1>
-  <p>GitHub Pages is successfully displaying my website.</p>
-</body>
-</html>
 
-    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nagar-AI | Smart Civic India</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    /* ================= INTRO ================= */
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, #071b3a, #174b8a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: introFade 1s ease 3.5s forwards;
+    }
+
+    .intro-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Indian Flag */
+
+    .flag {
+      position: absolute;
+      width: 210px;
+      height: 140px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
+
+      animation:
+        flagMove 3s cubic-bezier(.65,0,.35,1) .5s forwards;
+    }
+
+    .orange {
+      height: 33.33%;
+      background: #ff9933;
+    }
+
+    .white {
+      height: 33.33%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .green {
+      height: 33.33%;
+      background: #138808;
+    }
+
+    /* Ashoka Chakra */
+
+    .chakra {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #000080;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .chakra::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 100%;
+      background: #000080;
+      transform: translate(-50%, -50%);
+    }
+
+    .chakra::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 100%;
+      background: #000080;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .intro-title {
+      position: absolute;
+      top: calc(50% + 100px);
+      width: 100%;
+      text-align: center;
+      color: white;
+
+      opacity: 0;
+      animation: titleAppear 1s ease 1s forwards;
+    }
+
+    .intro-title h1 {
+      font-size: 42px;
+      letter-spacing: 2px;
+    }
+
+    .intro-title p {
+      margin-top: 8px;
+      font-size: 16px;
+      opacity: .85;
+    }
+
+    @keyframes flagMove {
+
+      0% {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      55% {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(.75);
+      }
+
+      100% {
+        left: calc(100% - 55px);
+        top: 35px;
+        transform: translate(-50%, -50%) scale(.25);
+      }
+
+    }
+
+    @keyframes titleAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    @keyframes introFade {
+
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    }
+
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid #e2e8f0;
+
+      padding: 15px 6%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo h1 {
+      color: #123c72;
+      font-size: 25px;
+    }
+
+    .logo span {
+      color: #ff7a00;
+    }
+
+    .mini-flag {
+      width: 38px;
+      height: 25px;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+
+    .mini-flag div {
+      height: 33.33%;
+    }
+
+    .online {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero {
+
+      min-height: 430px;
+
+      padding: 70px 7%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      background:
+        radial-gradient(circle at 80% 20%, #dbeafe, transparent 30%),
+        linear-gradient(135deg,#fff,#eef5ff);
+
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .badge {
+      display: inline-block;
+
+      background: #fff3e6;
+      color: #e66b00;
+
+      padding: 8px 14px;
+
+      border-radius: 20px;
+
+      font-size: 13px;
+
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      font-size: clamp(38px,6vw,65px);
+      line-height: 1.05;
+    }
+
+    .hero h2 span {
+      color: #2563eb;
+    }
+
+    .hero p {
+      margin-top: 20px;
+
+      color: #64748b;
+
+      font-size: 18px;
+
+      line-height: 1.6;
+    }
+
+    .hero-icon {
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 95px;
+
+      box-shadow:
+        0 25px 60px rgba(37,99,235,.18);
+
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+
+      50% {
+        transform: translateY(-12px);
+      }
+
+    }
+
+
+    /* ================= CONTENT ================= */
+
+    .container {
+      max-width: 1050px;
+
+      margin: auto;
+
+      padding: 50px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+    }
+
+    .section-title p {
+      color: #64748b;
+
+      margin-top: 8px;
+    }
+
+    .card {
+
+      background: white;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 20px;
+
+      padding: 28px;
+
+      margin-bottom: 22px;
+
+      box-shadow:
+        0 12px 35px rgba(15,23,42,.06);
+    }
+
+    .card h3 {
+      margin-bottom: 18px;
+    }
+
+
+    /* ================= UPLOAD ================= */
+
+    .upload {
+
+      border: 2px dashed #93c5fd;
+
+      border-radius: 15px;
+
+      padding: 35px 20px;
+
+      text-align: center;
+
+      background: #f8fbff;
+    }
+
+    .upload-icon {
+      font-size: 50px;
+    }
+
+    input[type=file] {
+      margin-top: 15px;
+
+      width: 100%;
+    }
+
+    #preview {
+
+      display: none;
+
+      max-width: 100%;
+
+      max-height: 300px;
+
+      margin: 20px auto;
+
+      border-radius: 12px;
+    }
+
+
+    /* ================= BUTTONS ================= */
+
+    button {
+
+      border: none;
+
+      padding: 13px 20px;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      font-size: 15px;
+
+      font-weight: bold;
+
+      margin-top: 15px;
+
+      transition: .2s;
+    }
+
+    .primary {
+
+      background: #2563eb;
+
+      color: white;
+    }
+
+    .primary:hover {
+
+      background: #1d4ed8;
+
+      transform: translateY(-2px);
+    }
+
+    .location {
+
+      background: #16a34a;
+
+      color: white;
+    }
+
+
+    /* ================= FORM ================= */
+
+    label {
+
+      display: block;
+
+      margin-top: 15px;
+
+      font-weight: bold;
+    }
+
+    select,
+    textarea {
+
+      width: 100%;
+
+      padding: 13px;
+
+      margin-top: 8px;
+
+      border: 1px solid #cbd5e1;
+
+      border-radius: 10px;
+
+      font-size: 15px;
+    }
+
+    textarea {
+
+      min-height: 120px;
+
+      resize: vertical;
+    }
+
+
+    /* ================= RESULT ================= */
+
+    .result {
+
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 18px;
+
+      border-radius: 12px;
+
+      background: #eff6ff;
+
+      border-left: 5px solid #2563eb;
+
+      line-height: 1.7;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    footer {
+
+      background: #102a43;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 30px 20px;
+    }
+
+    footer p {
+
+      margin-top: 8px;
+
+      color: #cbd5e1;
+
+      font-size: 13px;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width:700px) {
+
+      .hero {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 55px 25px;
+      }
+
+      .hero-icon {
+
+        width: 180px;
+        height: 180px;
+
+        font-size: 70px;
+      }
+
+      .online {
+        display: none;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .intro-title h1 {
+        font-size: 32px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= INTRO ANIMATION ================= -->
+
+<div id="intro">
+
+  <div class="intro-content">
+
+    <div class="flag">
+
+      <div class="orange"></div>
+
+      <div class="white">
+
+        <div class="chakra"></div>
+
+      </div>
+
+      <div class="green"></div>
+
+    </div>
+
+    <div class="intro-title">
+
+      <h1>Nagar-AI</h1>
+
+      <p>Building a Smarter India 🇮🇳</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+  <div class="logo">
+
+    <div class="mini-flag">
+
+      <div style="background:#ff9933"></div>
+
+      <div style="background:white"></div>
+
+      <div style="background:#138808"></div>
+
+    </div>
+
+    <h1>Nagar<span>-AI</span></h1>
+
+  </div>
+
+  <div class="online">
+
+    ● AI Assistant Online
+
+  </div>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <div class="badge">
+
+      🇮🇳 Smart India • Smart Cities
+
+    </div>
+
+    <h2>
+
+      Report Problems.<br>
+
+      <span>Improve Your City.</span>
+
+    </h2>
+
+    <p>
+
+      Report potholes, garbage, broken streetlights,
+
+      water leakage and other civic problems using
+
+      the power of Artificial Intelligence.
+
+    </p>
+
+  </div>
+
+
+  <div class="hero-icon">
+
+    🏙️
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+  <div class="section-title">
+
+    <h2>Report a Civic Problem</h2>
+
+    <p>Three simple steps to make your city better.</p>
+
+  </div>
+
+
+  <!-- PHOTO -->
+
+  <section class="card">
+
+    <h3>📷 Step 1 — Upload a Photo</h3>
+
+    <div class="upload">
+
+      <div class="upload-icon">📸</div>
+
+      <p>
+
+        Take a photo or select one from your phone.
+
+      </p>
+
+      <input
+
+        type="file"
+
+        id="photo"
+
+        accept="image/*"
+
+        onchange="previewPhoto()"
+
+      >
+
+      <img id="preview">
+
+      <br>
+
+      <button
+
+        class="primary"
+
+        onclick="analyzePhoto()"
+
+      >
+
+        🔍 Analyze with AI
+
+      </button>
+
+    </div>
+
+    <div id="analysis" class="result"></div>
+
+  </section>
+
+
+
+  <!-- LOCATION -->
+
+  <section class="card">
+
+    <h3>📍 Step 2 — Capture Location</h3>
+
+    <p>
+
+      Your location helps the concerned department
+
+      identify where the problem is located.
+
+    </p>
+
+    <button
+
+      class="location"
+
+      onclick="getLocation()"
+
+    >
+
+      📍 Capture My Location
+
+    </button>
+
+    <div id="locationText" class="result"></div>
+
+  </section>
+
+
+
+  <!-- COMPLAINT -->
+
+  <section class="card">
+
+    <h3>📝 Step 3 — Generate Complaint</h3>
+
+    <label>Problem Category</label>
+
+    <select id="category">
+
+      <option>Road / Pothole</option>
+
+      <option>Garbage</option>
+
+      <option>Broken Streetlight</option>
+
+      <option>Water Leakage</option>
+
+      <option>Drainage</option>
+
+      <option>Damaged Road</option>
+
+      <option>Other</option>
+
+    </select>
+
+
+    <label>Description</label>
+
+    <textarea
+
+      id="description"
+
+      placeholder="Describe the problem..."
+
+    ></textarea>
+
+
+    <button
+
+      class="primary"
+
+      onclick="generateComplaint()"
+
+    >
+
+      ✨ Generate Complaint
+
+    </button>
+
+
+    <div id="complaint" class="result"></div>
+
+  </section>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <strong>🇮🇳 Nagar-AI</strong>
+
+  <p>
+
+    AI-powered civic problem reporting platform
+
+  </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* ================= PHOTO PREVIEW ================= */
+
+function previewPhoto() {
+
+  const input =
+    document.getElementById("photo");
+
+  const preview =
+    document.getElementById("preview");
+
+  if (input.files.length > 0) {
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(event) {
+
+        preview.src =
+          event.target.result;
+
+        preview.style.display =
+          "block";
+
+      };
+
+    reader.readAsDataURL(
+      input.files[0]
+    );
+
+  }
+
+}
+
+
+
+/* ================= AI DEMO ================= */
+
+function analyzePhoto() {
+
+  const photo =
+    document.getElementById("photo");
+
+  const result =
+    document.getElementById("analysis");
+
+  if (!photo.files.length) {
+
+    alert(
+      "Please upload a photo first."
+    );
+
+    return;
+
+  }
+
+  result.style.display =
+    "block";
+
+  result.innerHTML = `
+
+    <strong>🤖 AI Analysis</strong>
+
+    <br><br>
+
+    Category:
+    <strong>Road / Pothole</strong>
+
+    <br>
+
+    Priority:
+    <strong>High</strong>
+
+    <br>
+
+    Confidence:
+    <strong>94%</strong>
+
+    <br>
+
+    Status:
+    <strong>Problem detected</strong>
+
+  `;
+
+}
+
+
+
+/* ================= LOCATION ================= */
+
+function getLocation() {
+
+  const result =
+    document.getElementById(
+      "locationText"
+    );
+
+  result.style.display =
+    "block";
+
+  result.innerHTML =
+    "📡 Detecting your location...";
+
+  if (!navigator.geolocation) {
+
+    result.innerHTML =
+      "❌ Location is not supported.";
+
+    return;
+
+  }
+
+  navigator.geolocation.getCurrentPosition(
+
+    function(position) {
+
+      const lat =
+        position.coords.latitude;
+
+      const lon =
+        position.coords.longitude;
+
+      result.innerHTML = `
+
+        <strong>✅ Location Captured</strong>
+
+        <br><br>
+
+        Latitude:
+        ${lat.toFixed(5)}
+
+        <br>
+
+        Longitude:
+        ${lon.toFixed(5)}
+
+      `;
+
+    },
+
+    function() {
+
+      result.innerHTML =
+        "❌ Location permission denied.";
+
+    }
+
+  );
+
+}
+
+
+
+/* ================= COMPLAINT ================= */
+
+function generateComplaint() {
+
+  const category =
+    document.getElementById(
+      "category"
+    ).value;
+
+  const description =
+    document.getElementById(
+      "description"
+    ).value;
+
+  const result =
+    document.getElementById(
+      "complaint"
+    );
+
+  if (!description.trim()) {
+
+    alert(
+      "Please describe the problem first."
+    );
+
+    return;
+
+  }
+
+  result.style.display =
+    "block";
+
+  result.innerHTML = `
+
+    <strong>✨ Generated Complaint</strong>
+
+    <br><br>
+
+    <strong>Subject:</strong>
+
+    Civic Issue —
+    ${category}
+
+    <br><br>
+
+    Dear Municipal Department,
+
+    <br><br>
+
+    I would like to report a civic
+
+    issue regarding
+
+    <strong>${category}</strong>.
+
+    <br><br>
+
+    <strong>Description:</strong>
+
+    <br>
+
+    ${description}
+
+    <br><br>
+
+    Kindly inspect this issue and take
+
+    the necessary action at the earliest.
+
+    <br><br>
+
+    Thank you.
+
+  `;
+
+}
+
+</script>
+
+
+</body>
+  </html>
