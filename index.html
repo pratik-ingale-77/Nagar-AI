@@ -1,9 +1,8 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nagar-AI | Smart Civic India</title>
 
 <style>
@@ -23,7 +22,7 @@ body{
   color:#172033;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
   position:sticky;
@@ -34,7 +33,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:rgba(255,255,255,.96);
+  background:rgba(255,255,255,.97);
   backdrop-filter:blur(12px);
   border-bottom:1px solid #e5eaf1;
   box-shadow:0 5px 25px rgba(15,23,42,.06);
@@ -54,7 +53,7 @@ header{
   align-items:center;
   justify-content:center;
   font-size:24px;
-  background:linear-gradient(135deg,#ff9933,#ffffff,#138808);
+  background:linear-gradient(135deg,#ff9933,#fff,#138808);
   border:1px solid #e2e8f0;
   box-shadow:0 6px 18px rgba(15,23,42,.12);
 }
@@ -88,87 +87,7 @@ header{
   background:#22c55e;
 }
 
-/* ================= INDIAN FLAG ================= */
-
-.flag{
-  width:120px;
-  height:80px;
-  position:relative;
-  overflow:hidden;
-  border-radius:5px;
-  box-shadow:0 14px 35px rgba(15,23,42,.16);
-  border:1px solid #dbe2ea;
-}
-
-.flag-stripe{
-  height:33.333%;
-  width:100%;
-}
-
-.saffron{
-  background:#ff9933;
-}
-
-.white{
-  background:#ffffff;
-  position:relative;
-}
-
-.green{
-  background:#138808;
-}
-
-.chakra{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:25px;
-  height:25px;
-  border:2px solid #000080;
-  border-radius:50%;
-}
-
-.chakra:before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:2px;
-  height:23px;
-  background:#000080;
-  transform:translate(-50%,-50%);
-  box-shadow:
-    0 0 0 #000080;
-}
-
-.chakra:after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:23px;
-  height:2px;
-  background:#000080;
-  transform:translate(-50%,-50%);
-}
-
-.spoke{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:2px;
-  height:23px;
-  background:#000080;
-  transform-origin:center;
-}
-
-.s1{transform:translate(-50%,-50%) rotate(45deg);}
-.s2{transform:translate(-50%,-50%) rotate(90deg);}
-.s3{transform:translate(-50%,-50%) rotate(135deg);}
-.s4{transform:translate(-50%,-50%) rotate(180deg);}
-
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
   min-height:560px;
@@ -177,11 +96,10 @@ header{
   align-items:center;
   justify-content:space-between;
   gap:55px;
-
   background:
     radial-gradient(circle at 90% 15%,#dbeafe 0,transparent 27%),
     radial-gradient(circle at 5% 90%,#dcfce7 0,transparent 25%),
-    linear-gradient(135deg,#ffffff,#eef5ff);
+    linear-gradient(135deg,#fff,#eef5ff);
 }
 
 .hero-content{
@@ -190,8 +108,6 @@ header{
 
 .badge{
   display:inline-flex;
-  align-items:center;
-  gap:7px;
   padding:9px 15px;
   border-radius:30px;
   background:#fff7ed;
@@ -323,7 +239,7 @@ button:hover{
   font-size:18px;
 }
 
-/* ================= STATS ================= */
+/* STATS */
 
 .stats{
   max-width:1080px;
@@ -332,7 +248,6 @@ button:hover{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
-  position:relative;
 }
 
 .stat{
@@ -366,7 +281,7 @@ button:hover{
   font-size:13px;
 }
 
-/* ================= MAIN ================= */
+/* MAIN */
 
 .container{
   max-width:1080px;
@@ -397,7 +312,7 @@ button:hover{
   color:#64748b;
 }
 
-/* ================= CARDS ================= */
+/* CARD */
 
 .card{
   padding:30px;
@@ -438,7 +353,7 @@ button:hover{
   font-size:12px;
 }
 
-/* ================= UPLOAD ================= */
+/* UPLOAD */
 
 .upload-box{
   padding:42px 20px;
@@ -492,7 +407,26 @@ button:hover{
   border:1px solid #dbe3ed;
 }
 
-/* ================= ANALYSIS ================= */
+/* LOADER */
+
+.loader{
+  display:none;
+  margin:20px auto;
+  width:42px;
+  height:42px;
+  border:4px solid #dbeafe;
+  border-top-color:#1769e0;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* RESULT */
 
 .result{
   display:none;
@@ -511,6 +445,30 @@ button:hover{
   font-weight:800;
 }
 
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:15px;
+}
+
+.result-item{
+  padding:14px;
+  background:white;
+  border-radius:12px;
+  border:1px solid #e0e7ef;
+}
+
+.result-item small{
+  display:block;
+  color:#64748b;
+  font-size:11px;
+}
+
+.result-item strong{
+  color:#173f6d;
+}
+
 .high{
   display:inline-block;
   padding:3px 10px;
@@ -521,7 +479,7 @@ button:hover{
   font-weight:800;
 }
 
-/* ================= LOCATION ================= */
+/* LOCATION */
 
 .location-box{
   padding:23px;
@@ -585,7 +543,7 @@ button:hover{
   font-size:12px;
 }
 
-/* ================= FORMS ================= */
+/* FORMS */
 
 label{
   display:block;
@@ -626,7 +584,7 @@ textarea{
   background:#ed7800;
 }
 
-/* ================= TRACKING ================= */
+/* TRACKING */
 
 .track-row{
   display:flex;
@@ -685,7 +643,7 @@ textarea{
   font-size:13px;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
   padding:48px 20px;
@@ -704,7 +662,7 @@ footer p{
   font-size:13px;
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 
 @media(max-width:800px){
 
@@ -778,9 +736,8 @@ footer p{
     width:100%;
   }
 
-  .flag{
-    width:100px;
-    height:67px;
+  .result-grid{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -788,20 +745,14 @@ footer p{
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
 
   <div class="brand">
-
-    <div class="brand-icon">
-      🏙️
-    </div>
+    <div class="brand-icon">🏙️</div>
 
     <div class="brand-name">
       Nagar<span>-AI</span>
     </div>
-
   </div>
 
   <div class="online">
@@ -811,8 +762,6 @@ footer p{
 
 </header>
 
-
-<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -902,64 +851,28 @@ footer p{
 </section>
 
 
-<!-- ================= STATS ================= -->
-
 <section class="stats">
 
   <div class="stat">
-
-    <div class="stat-icon">
-      🤖
-    </div>
-
-    <h3>
-      AI Detection
-    </h3>
-
-    <p>
-      Identify civic problems from images.
-    </p>
-
+    <div class="stat-icon">🤖</div>
+    <h3>AI Detection</h3>
+    <p>Identify civic problems from images.</p>
   </div>
 
-
   <div class="stat">
-
-    <div class="stat-icon">
-      📍
-    </div>
-
-    <h3>
-      Smart Location
-    </h3>
-
-    <p>
-      Capture the problem's location.
-    </p>
-
+    <div class="stat-icon">📍</div>
+    <h3>Smart Location</h3>
+    <p>Capture the problem's location.</p>
   </div>
 
-
   <div class="stat">
-
-    <div class="stat-icon">
-      🎫
-    </div>
-
-    <h3>
-      Easy Tracking
-    </h3>
-
-    <p>
-      Track your complaint using an ID.
-    </p>
-
+    <div class="stat-icon">🎫</div>
+    <h3>Easy Tracking</h3>
+    <p>Track your complaint using an ID.</p>
   </div>
 
 </section>
 
-
-<!-- ================= MAIN ================= -->
 
 <main class="container">
 
@@ -980,7 +893,7 @@ footer p{
   </div>
 
 
-  <!-- ================= STEP 1 ================= -->
+  <!-- STEP 1 -->
 
   <section
     class="card"
@@ -993,15 +906,8 @@ footer p{
       </div>
 
       <div>
-
-        <h3>
-          Upload Problem Image
-        </h3>
-
-        <p>
-          Upload a photo of the civic issue.
-        </p>
-
+        <h3>Upload Problem Image</h3>
+        <p>Upload a photo of the civic issue.</p>
       </div>
 
     </div>
@@ -1036,10 +942,16 @@ footer p{
         alt="Problem preview"
       >
 
+      <div
+        id="loader"
+        class="loader">
+      </div>
+
       <br>
 
       <button
         class="primary"
+        id="analyzeButton"
         onclick="analyzeImage()">
         🤖 Analyze With AI
       </button>
@@ -1055,7 +967,7 @@ footer p{
   </section>
 
 
-  <!-- ================= STEP 2 ================= -->
+  <!-- STEP 2 -->
 
   <section class="card">
 
@@ -1066,15 +978,8 @@ footer p{
       </div>
 
       <div>
-
-        <h3>
-          Location
-        </h3>
-
-        <p>
-          Detect where the problem is located.
-        </p>
-
+        <h3>Location</h3>
+        <p>Detect where the problem is located.</p>
       </div>
 
     </div>
@@ -1089,16 +994,12 @@ footer p{
         </div>
 
         <div>
-
-          <h4>
-            Full Location Detection
-          </h4>
+          <h4>Full Location Detection</h4>
 
           <p>
             Allow location access to find
             the address of the reported issue.
           </p>
-
         </div>
 
       </div>
@@ -1135,7 +1036,7 @@ footer p{
   </section>
 
 
-  <!-- ================= STEP 3 ================= -->
+  <!-- STEP 3 -->
 
   <section class="card">
 
@@ -1146,15 +1047,8 @@ footer p{
       </div>
 
       <div>
-
-        <h3>
-          Create Complaint
-        </h3>
-
-        <p>
-          Add details and generate your complaint.
-        </p>
-
+        <h3>Create Complaint</h3>
+        <p>Add details and generate your complaint.</p>
       </div>
 
     </div>
@@ -1202,7 +1096,7 @@ footer p{
   </section>
 
 
-  <!-- ================= STEP 4 ================= -->
+  <!-- STEP 4 -->
 
   <section
     class="card"
@@ -1215,15 +1109,8 @@ footer p{
       </div>
 
       <div>
-
-        <h3>
-          Track Complaint
-        </h3>
-
-        <p>
-          Check the current status of your complaint.
-        </p>
-
+        <h3>Track Complaint</h3>
+        <p>Check the current status of your complaint.</p>
       </div>
 
     </div>
@@ -1237,8 +1124,7 @@ footer p{
         placeholder="Enter Complaint ID e.g. NGA-123456"
       >
 
-      <button
-        onclick="trackComplaint()">
+      <button onclick="trackComplaint()">
         🔎 Track Complaint
       </button>
 
@@ -1254,8 +1140,6 @@ footer p{
 
 </main>
 
-
-<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -1276,7 +1160,11 @@ footer p{
 
 <script>
 
-/* ================= NAVIGATION ================= */
+const BACKEND_URL =
+  "https://nagar-ai-jo1n.onrender.com";
+
+
+/* NAVIGATION */
 
 function goTo(id){
 
@@ -1289,7 +1177,7 @@ function goTo(id){
 }
 
 
-/* ================= IMAGE PREVIEW ================= */
+/* IMAGE PREVIEW */
 
 function previewImage(){
 
@@ -1306,6 +1194,17 @@ function previewImage(){
     return;
   }
 
+  const file=input.files[0];
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please select a valid image.");
+
+    input.value="";
+
+    return;
+  }
+
   const reader =
     new FileReader();
 
@@ -1317,20 +1216,26 @@ function previewImage(){
 
   };
 
-  reader.readAsDataURL(input.files[0]);
+  reader.readAsDataURL(file);
 
 }
 
 
-/* ================= AI ANALYSIS ================= */
+/* REAL FRONTEND → BACKEND CONNECTION */
 
-function analyzeImage(){
+async function analyzeImage(){
 
   const input =
     document.getElementById("imageInput");
 
   const result =
     document.getElementById("analysis");
+
+  const loader =
+    document.getElementById("loader");
+
+  const button =
+    document.getElementById("analyzeButton");
 
   if(!input.files.length){
 
@@ -1339,375 +1244,118 @@ function analyzeImage(){
     return;
   }
 
-  result.style.display="block";
+  const file=input.files[0];
 
-  result.innerHTML=`
+  const formData=new FormData();
 
-    <div class="result-title">
-      🤖 AI Analysis Complete
-    </div>
+  formData.append("image",file);
 
-    <strong>Detected Category:</strong>
-    Road / Pothole
+  result.style.display="none";
 
-    <br>
+  loader.style.display="block";
 
-    <strong>Priority:</strong>
-    <span class="high">
-      HIGH
-    </span>
+  button.disabled=true;
 
-    <br>
+  button.style.opacity=".6";
 
-    <strong>Confidence:</strong>
-    94%
-
-    <br>
-
-    <strong>Suggested Department:</strong>
-    Municipal Road Department
-
-    <br><br>
-
-    <small style="color:#64748b">
-      AI analysis is currently a frontend demonstration.
-      A real computer-vision model will be connected
-      through the backend.
-    </small>
-
-  `;
-
-  document.getElementById("category").value=
-    "Road / Pothole";
-
-}
+  button.innerText="Analyzing...";
 
 
-/* ================= LOCATION ================= */
+  try{
 
-function getLocation(){
-
-  const addressBox =
-    document.getElementById("address");
-
-  const addressText =
-    document.getElementById("addressText");
-
-  const coordinates =
-    document.getElementById("coordinates");
-
-  addressBox.style.display="block";
-
-  addressText.innerHTML=
-    "📡 Detecting your location...";
-
-  coordinates.innerHTML="";
-
-  if(!navigator.geolocation){
-
-    addressText.innerHTML=
-      "❌ Geolocation is not supported by this browser.";
-
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-
-    async function(position){
-
-      const lat=
-        position.coords.latitude;
-
-      const lon=
-        position.coords.longitude;
-
-      coordinates.innerHTML=
-        "Coordinates: "+
-        lat.toFixed(6)+
-        ", "+
-        lon.toFixed(6);
-
-      addressText.innerHTML=
-        "🔄 Converting location into full address...";
-
-      try{
-
-        const url=
-          "https://nominatim.openstreetmap.org/reverse"+
-          "?format=jsonv2"+
-          "&lat="+encodeURIComponent(lat)+
-          "&lon="+encodeURIComponent(lon)+
-          "&addressdetails=1";
-
-        const response=
-          await fetch(url);
-
-        if(!response.ok){
-
-          throw new Error("Address lookup failed");
-
+    const response=
+      await fetch(
+        BACKEND_URL+"/api/analyze",
+        {
+          method:"POST",
+          body:formData
         }
+      );
 
-        const data=
-          await response.json();
+    const data=
+      await response.json();
 
-        if(data && data.display_name){
 
-          addressText.innerHTML=
-            "📍 "+data.display_name;
+    if(!response.ok){
 
-        }else{
+      throw new Error(
+        data.error ||
+        "Backend analysis failed"
+      );
 
-          addressText.innerHTML=
-            "📍 Address could not be found.";
-
-        }
-
-      }catch(error){
-
-        addressText.innerHTML=
-          "⚠️ Could not retrieve the full address. Please try again.";
-
-      }
-
-    },
-
-    function(error){
-
-      if(error.code===1){
-
-        addressText.innerHTML=
-          "⚠️ Location permission denied. Please allow location access.";
-
-      }else if(error.code===2){
-
-        addressText.innerHTML=
-          "⚠️ Your location could not be determined.";
-
-      }else if(error.code===3){
-
-        addressText.innerHTML=
-          "⚠️ Location request timed out. Try again.";
-
-      }else{
-
-        addressText.innerHTML=
-          "⚠️ Unable to detect your location.";
-
-      }
-
-    },
-
-    {
-      enableHighAccuracy:true,
-      timeout:15000,
-      maximumAge:0
     }
 
-  );
 
-}
+    result.style.display="block";
 
+    result.innerHTML=`
 
-/* ================= COMPLAINT GENERATION ================= */
-
-function generateComplaint(){
-
-  const category=
-    document.getElementById("category").value;
-
-  const description=
-    document
-      .getElementById("description")
-      .value
-      .trim();
-
-  const result=
-    document.getElementById("complaint");
-
-  if(!description){
-
-    alert(
-      "Please enter a description of the problem."
-    );
-
-    return;
-  }
-
-  const id=
-    "NGA-"+Math.floor(
-      100000+
-      Math.random()*900000
-    );
-
-  localStorage.setItem(
-    "nagarComplaintId",
-    id
-  );
-
-  result.style.display="block";
-
-  result.innerHTML=`
-
-    <div class="result-title">
-      ✅ Complaint Generated
-    </div>
-
-    <strong>Complaint ID:</strong>
-    ${id}
-
-    <br><br>
-
-    <strong>Category:</strong>
-    ${category}
-
-    <br><br>
-
-    <strong>Priority:</strong>
-    <span class="high">
-      HIGH
-    </span>
-
-    <br><br>
-
-    <strong>Description:</strong>
-    <br>
-    ${escapeHTML(description)}
-
-    <br><br>
-
-    <strong>Department:</strong>
-    Concerned Municipal Department
-
-    <br><br>
-
-    <small style="color:#64748b">
-      Save your Complaint ID to track the complaint.
-    </small>
-
-  `;
-
-}
-
-
-/* ================= TRACKING ================= */
-
-function trackComplaint(){
-
-  const id=
-    document
-      .getElementById("trackId")
-      .value
-      .trim();
-
-  const result=
-    document.getElementById("trackResult");
-
-  if(!id){
-
-    alert(
-      "Please enter your Complaint ID."
-    );
-
-    return;
-  }
-
-  result.style.display="block";
-
-  result.innerHTML=`
-
-    <div class="result-title">
-      🎫 Complaint Status
-    </div>
-
-    <strong>Complaint ID:</strong>
-    ${escapeHTML(id)}
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <h4>
-          Complaint Submitted
-        </h4>
-
-        <p>
-          Your complaint has been registered.
-        </p>
-
+      <div class="result-title">
+        ✅ AI Analysis Complete
       </div>
 
+      <div class="result-grid">
 
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <h4>
-          AI Analysis Completed
-        </h4>
-
-        <p>
-          The civic issue has been classified.
-        </p>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <h4>
-          Department Assigned
-        </h4>
-
-        <p>
-          Complaint assigned to the concerned department.
-        </p>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div
-          class="timeline-dot"
-          style="background:#94a3b8;border-color:#e2e8f0">
+        <div class="result-item">
+          <small>Detected Category</small>
+          <strong>
+            ${escapeHTML(data.category)}
+          </strong>
         </div>
 
-        <h4>
-          Action Pending
-        </h4>
+        <div class="result-item">
+          <small>Priority</small>
+          <strong class="high">
+            ${escapeHTML(data.priority)}
+          </strong>
+        </div>
 
-        <p>
-          Waiting for department action.
-        </p>
+        <div class="result-item">
+          <small>Confidence</small>
+          <strong>
+            ${escapeHTML(String(data.confidence))}%
+          </strong>
+        </div>
+
+        <div class="result-item">
+          <small>Suggested Department</small>
+          <strong>
+            ${escapeHTML(data.department)}
+          </strong>
+        </div>
 
       </div>
 
-    </div>
+      <p style="margin-top:15px;color:#64748b;font-size:13px;">
+        ${escapeHTML(data.message || "Analysis completed successfully.")}
+      </p>
 
-  `;
-
-}
+    `;
 
 
-/* ================= SAFETY ================= */
+    document.getElementById("category").value=
+      data.category || "Road / Pothole";
 
-function escapeHTML(text){
 
-  const div=
-    document.createElement("div");
+  }catch(error){
 
-  div.textContent=text;
+    result.style.display="block";
 
-  return div.innerHTML;
+    result.innerHTML=`
 
-}
+      <div class="result-title">
+        ❌ Connection Error
+      </div>
 
-</script>
+      <p style="color:#b91c1c;">
+        ${escapeHTML(error.message)}
+      </p>
 
-</body>
-</html>
+      <p style="margin-top:8px;color:#64748b;font-size:13px;">
+        Please make sure the Render backend is live
+        and try again.
+      </p>
+
+    `;
+
+  }f
