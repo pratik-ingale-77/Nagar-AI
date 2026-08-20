@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#102f52">
+<meta name="theme-color" content="#0b3d91">
 
 <title>Nagar-AI | Smart Civic India</title>
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 html{
@@ -25,41 +25,202 @@ body{
   overflow-x:hidden;
 }
 
-button,
-input,
-select,
-textarea{
-  font-family:inherit;
+button,input,select,textarea{
+  font:inherit;
 }
 
 button{
   cursor:pointer;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* =====================================================
+   INDIAN FLAG INTRO
+===================================================== */
+
+#flagIntro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(circle at center,#ffffff 0%,#f5f9ff 55%,#e5efff 100%);
+
+  animation:introFade 6s ease forwards;
+}
+
+.flag-scene{
+  position:relative;
+  width:420px;
+  height:320px;
+
+  transform-origin:center center;
+
+  animation:flagJourney 6s cubic-bezier(.72,0,.18,1) forwards;
+}
+
+.flag-pole{
+  position:absolute;
+  left:12px;
+  top:-20px;
+  width:9px;
+  height:355px;
+  border-radius:10px;
+
+  background:linear-gradient(
+    90deg,
+    #666,
+    #fff,
+    #888
+  );
+
+  box-shadow:3px 4px 12px rgba(0,0,0,.2);
+}
+
+.flag-pole:before{
+  content:"";
+  position:absolute;
+  left:-7px;
+  top:-14px;
+  width:23px;
+  height:23px;
+  border-radius:50%;
+
+  background:
+    radial-gradient(circle at 35% 30%,#fff,#777);
+
+  box-shadow:0 3px 8px rgba(0,0,0,.25);
+}
+
+.india-flag{
+  position:absolute;
+  left:20px;
+  top:0;
+  width:390px;
+
+  transform-origin:left center;
+
+  filter:
+    drop-shadow(0 15px 22px rgba(0,0,0,.2));
+
+  animation:flagWave 1.8s ease-in-out infinite;
+}
+
+/* Slow realistic waving */
+
+@keyframes flagWave{
+  0%{
+    transform:
+      perspective(900px)
+      rotateY(0deg)
+      skewY(0deg);
+  }
+
+  25%{
+    transform:
+      perspective(900px)
+      rotateY(-8deg)
+      skewY(1deg);
+  }
+
+  50%{
+    transform:
+      perspective(900px)
+      rotateY(6deg)
+      skewY(-1deg);
+  }
+
+  75%{
+    transform:
+      perspective(900px)
+      rotateY(-6deg)
+      skewY(1deg);
+  }
+
+  100%{
+    transform:
+      perspective(900px)
+      rotateY(0deg)
+      skewY(0deg);
+  }
+}
+
+/* Center → top-right */
+
+@keyframes flagJourney{
+  0%{
+    transform:translate(0,0) scale(1.08);
+  }
+
+  45%{
+    transform:translate(0,0) scale(1.08);
+  }
+
+  100%{
+    transform:
+      translate(
+        calc(50vw - 175px),
+        calc(-50vh + 55px)
+      )
+      scale(.24);
+  }
+}
+
+@keyframes introFade{
+  0%,82%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+@media(max-width:600px){
+
+  .flag-scene{
+    width:300px;
+    height:230px;
+  }
+
+  .india-flag{
+    width:275px;
+  }
+
+  .flag-pole{
+    height:260px;
+  }
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
-  position:fixed;
+  position:sticky;
   top:0;
-  left:0;
-  width:100%;
-  height:76px;
   z-index:1000;
+
+  height:74px;
+  padding:0 6%;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  padding:0 6%;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(15px);
 
-  background:rgba(255,255,255,.88);
-  backdrop-filter:blur(18px);
+  border-bottom:1px solid #e5eaf1;
 
-  border-bottom:1px solid rgba(148,163,184,.18);
-
-  box-shadow:0 8px 35px rgba(15,23,42,.08);
+  box-shadow:
+    0 5px 25px rgba(15,23,42,.07);
 }
 
 .brand{
@@ -78,19 +239,24 @@ header{
 
   border-radius:14px;
 
-  background:linear-gradient(
-    135deg,
-    #ff9933,
-    #ffffff 48%,
-    #138808
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #ff9933 0 33%,
+      #fff 33% 66%,
+      #138808 66%
+    );
 
-  box-shadow:0 8px 22px rgba(15,23,42,.14);
+  border:1px solid #dce4ee;
+
+  font-size:24px;
+
+  box-shadow:0 6px 18px rgba(15,23,42,.12);
 }
 
 .brand-name{
   font-size:25px;
-  font-weight:900;
+  font-weight:850;
   color:#123b68;
 }
 
@@ -98,12 +264,12 @@ header{
   color:#f47b20;
 }
 
-.status{
+.online{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
 
-  padding:9px 15px;
+  padding:8px 14px;
 
   border-radius:30px;
 
@@ -114,74 +280,63 @@ header{
   font-weight:800;
 }
 
-.status-dot{
-  width:9px;
-  height:9px;
+.online-dot{
+  width:8px;
+  height:8px;
   border-radius:50%;
   background:#22c55e;
 
   box-shadow:0 0 0 5px rgba(34,197,94,.12);
 }
 
-/* =========================
-   INTRO HERO
-========================= */
+
+/* =====================================================
+   HERO / INTRO
+===================================================== */
 
 .hero{
   position:relative;
+  min-height:650px;
 
-  min-height:780px;
-
-  padding:145px 7% 90px;
+  padding:90px 7% 100px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  gap:70px;
+  gap:60px;
 
   overflow:hidden;
 
   background:
-    radial-gradient(
-      circle at 80% 15%,
-      rgba(219,234,254,.9),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 10% 80%,
-      rgba(220,252,231,.8),
-      transparent 28%
-    ),
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #eef5ff
-    );
+    radial-gradient(circle at 90% 10%,#dbeafe 0,transparent 28%),
+    radial-gradient(circle at 5% 90%,#dcfce7 0,transparent 27%),
+    linear-gradient(135deg,#fff,#edf5ff);
 }
 
-.hero::before{
+.hero:before{
   content:"";
+
   position:absolute;
-  width:450px;
-  height:450px;
+  width:500px;
+  height:500px;
 
   right:-180px;
-  bottom:-180px;
+  bottom:-250px;
 
   border-radius:50%;
 
-  border:70px solid rgba(23,105,224,.05);
+  border:80px solid rgba(23,105,224,.05);
 }
 
 .hero-content{
   position:relative;
   z-index:2;
 
-  max-width:720px;
+  max-width:700px;
 }
 
-.eyebrow{
+.badge{
   display:inline-flex;
   align-items:center;
   gap:8px;
@@ -190,57 +345,46 @@ header{
 
   border-radius:30px;
 
-  color:#b45309;
   background:#fff7ed;
-
   border:1px solid #fed7aa;
 
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1px;
+  color:#c2410c;
 
-  animation:fadeUp .8s ease;
+  font-size:12px;
+  font-weight:850;
+
+  letter-spacing:.7px;
 }
 
 .hero h1{
   margin-top:22px;
 
-  font-size:clamp(48px,7vw,82px);
-  line-height:.98;
+  font-size:clamp(43px,6vw,76px);
 
-  letter-spacing:-4px;
+  line-height:1.01;
+
+  letter-spacing:-3.5px;
 
   color:#102f52;
-
-  animation:fadeUp 1s ease;
 }
 
 .hero h1 span{
-  background:linear-gradient(
-    90deg,
-    #1769e0,
-    #0f8a4b
-  );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  color:#1769e0;
 }
 
-.hero-description{
-  max-width:680px;
+.hero-text{
+  max-width:650px;
 
-  margin-top:25px;
+  margin-top:24px;
 
-  color:#64748b;
+  color:#5f7187;
 
   font-size:18px;
-  line-height:1.8;
 
-  animation:fadeUp 1.2s ease;
+  line-height:1.75;
 }
 
-.hero-description strong{
+.hero-text strong{
   color:#174a8b;
 }
 
@@ -249,22 +393,33 @@ header{
   flex-wrap:wrap;
   gap:13px;
 
-  margin-top:32px;
+  margin-top:30px;
+}
 
-  animation:fadeUp 1.4s ease;
+.primary,
+.secondary,
+.location-button,
+.orange,
+.track-row button{
+  border-radius:13px;
+
+  padding:14px 20px;
+
+  border:0;
+
+  font-weight:800;
+
+  transition:.25s;
 }
 
 .primary{
   color:white;
 
-  background:linear-gradient(
-    135deg,
-    #1769e0,
-    #104b9d
-  );
+  background:
+    linear-gradient(135deg,#1769e0,#104b9d);
 
   box-shadow:
-    0 12px 30px rgba(23,105,224,.25);
+    0 10px 25px rgba(23,105,224,.25);
 }
 
 .secondary{
@@ -275,315 +430,71 @@ header{
   border:1px solid #d8e1ec;
 }
 
-.hero button{
-  padding:15px 22px;
-  border-radius:13px;
-
-  border:0;
-
-  font-size:14px;
-  font-weight:800;
-
-  transition:.25s;
+button:hover{
+  transform:translateY(-2px);
 }
 
-.hero button:hover{
-  transform:translateY(-4px);
+button:disabled{
+  cursor:not-allowed;
+  transform:none;
 }
 
-/* =========================
-   FLAG
-========================= */
 
-.flag-area{
-  position:relative;
-  z-index:2;
+/* =====================================================
+   HERO AI CARD
+===================================================== */
 
-  width:390px;
-  height:510px;
-
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-
-  animation:fadeIn 1.4s ease;
+.hero-right{
+  width:360px;
+  flex-shrink:0;
 }
 
-.flag-pole{
-  position:absolute;
-
-  width:8px;
-  height:440px;
-
-  left:50%;
-
-  transform:translateX(-50%);
-
-  background:linear-gradient(
-    90deg,
-    #64748b,
-    #e2e8f0,
-    #64748b
-  );
-
-  border-radius:10px;
-
-  box-shadow:4px 0 15px rgba(15,23,42,.18);
-}
-
-.flag-top{
-  position:absolute;
-
-  width:27px;
-  height:27px;
-
-  top:-12px;
-
-  border-radius:50%;
-
-  background:#d4a017;
-
-  box-shadow:
-    0 2px 4px rgba(0,0,0,.2);
-}
-
-.flag{
-  position:absolute;
-
-  top:30px;
-  left:calc(50% + 4px);
-
-  width:270px;
-  height:180px;
-
-  transform-origin:left center;
-
-  animation:waveFlag 3.2s ease-in-out infinite;
-
-  filter:drop-shadow(0 15px 18px rgba(15,23,42,.15));
-}
-
-.stripe{
-  width:100%;
-  height:60px;
-}
-
-.saffron{
-  background:#ff9933;
-}
-
-.white{
-  position:relative;
-  background:#ffffff;
-}
-
-.green{
-  background:#138808;
-}
-
-.chakra{
-  position:absolute;
-
-  width:52px;
-  height:52px;
-
-  left:50%;
-  top:50%;
-
-  transform:translate(-50%,-50%);
-
-  border:3px solid #000080;
-
-  border-radius:50%;
-}
-
-.chakra::before{
-  content:"";
-
-  position:absolute;
-
-  width:4px;
-  height:44px;
-
-  left:50%;
-  top:50%;
-
-  transform:translate(-50%,-50%);
-
-  background:#000080;
-}
-
-.spoke{
-  position:absolute;
-
-  width:3px;
-  height:44px;
-
-  left:50%;
-  top:50%;
-
-  background:#000080;
-
-  transform-origin:center;
-
-  transform:translate(-50%,-50%) rotate(var(--angle));
-}
-
-/* 24 official Ashoka Chakra spokes */
-
-.spoke:nth-child(1){--angle:0deg}
-.spoke:nth-child(2){--angle:15deg}
-.spoke:nth-child(3){--angle:30deg}
-.spoke:nth-child(4){--angle:45deg}
-.spoke:nth-child(5){--angle:60deg}
-.spoke:nth-child(6){--angle:75deg}
-.spoke:nth-child(7){--angle:90deg}
-.spoke:nth-child(8){--angle:105deg}
-.spoke:nth-child(9){--angle:120deg}
-.spoke:nth-child(10){--angle:135deg}
-.spoke:nth-child(11){--angle:150deg}
-.spoke:nth-child(12){--angle:165deg}
-.spoke:nth-child(13){--angle:180deg}
-.spoke:nth-child(14){--angle:195deg}
-.spoke:nth-child(15){--angle:210deg}
-.spoke:nth-child(16){--angle:225deg}
-.spoke:nth-child(17){--angle:240deg}
-.spoke:nth-child(18){--angle:255deg}
-.spoke:nth-child(19){--angle:270deg}
-.spoke:nth-child(20){--angle:285deg}
-.spoke:nth-child(21){--angle:300deg}
-.spoke:nth-child(22){--angle:315deg}
-.spoke:nth-child(23){--angle:330deg}
-.spoke:nth-child(24){--angle:345deg}
-
-.flag-label{
-  position:absolute;
-
-  bottom:25px;
-
-  padding:12px 18px;
-
-  border-radius:30px;
-
-  background:rgba(255,255,255,.9);
-
-  border:1px solid #e2e8f0;
-
-  box-shadow:0 10px 30px rgba(15,23,42,.1);
-
-  color:#123f75;
-
-  font-size:12px;
-  font-weight:800;
-}
-
-/* =========================
-   WHAT IS NAGAR AI
-========================= */
-
-.about{
-  padding:100px 7%;
-
-  background:#ffffff;
-}
-
-.about-inner{
-  max-width:1120px;
-  margin:auto;
-}
-
-.section-heading{
-  text-align:center;
-  max-width:760px;
-  margin:0 auto 50px;
-}
-
-.section-tag{
-  color:#1769e0;
-
-  font-size:12px;
-  font-weight:900;
-
-  letter-spacing:2px;
-}
-
-.section-heading h2{
-  margin-top:10px;
-
-  color:#102f52;
-
-  font-size:clamp(32px,5vw,48px);
-
-  letter-spacing:-1.5px;
-}
-
-.section-heading p{
-  margin-top:13px;
-
-  color:#64748b;
-
-  line-height:1.7;
-}
-
-.about-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:20px;
-}
-
-.about-card{
+.hero-card{
   position:relative;
 
   padding:30px;
 
-  border-radius:24px;
+  border-radius:30px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #f7faff
-    );
+  background:rgba(255,255,255,.92);
 
-  border:1px solid #e2e8f0;
+  border:1px solid #e0e7ef;
 
   box-shadow:
-    0 15px 45px rgba(15,23,42,.07);
-
-  transition:.3s;
+    0 25px 70px rgba(30,64,175,.15);
 
   overflow:hidden;
 }
 
-.about-card::after{
+.hero-card:before{
   content:"";
 
   position:absolute;
 
-  width:100px;
-  height:100px;
+  width:170px;
+  height:170px;
 
-  right:-35px;
-  top:-35px;
+  right:-70px;
+  top:-70px;
 
   border-radius:50%;
 
-  background:rgba(23,105,224,.05);
+  background:#eaf2ff;
 }
 
-.about-card:hover{
-  transform:translateY(-8px);
+.hero-card-top{
+  position:relative;
 
-  box-shadow:
-    0 25px 55px rgba(15,23,42,.12);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:22px;
 }
 
-.about-icon{
-  width:60px;
-  height:60px;
+.robot{
+  width:62px;
+  height:62px;
 
   display:flex;
   align-items:center;
@@ -593,115 +504,299 @@ header{
 
   background:#eaf2ff;
 
-  font-size:28px;
+  font-size:31px;
 
-  margin-bottom:20px;
+  animation:robotFloat 3s ease-in-out infinite;
 }
 
-.about-card h3{
+@keyframes robotFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+.live{
+  padding:7px 11px;
+
+  border-radius:20px;
+
+  color:#15803d;
+  background:#ecfdf3;
+
+  font-size:10px;
+  font-weight:850;
+}
+
+.hero-card h3{
   color:#123f75;
-  font-size:19px;
+  font-size:21px;
+}
+
+.feature{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  margin-top:13px;
+
+  padding:14px;
+
+  border-radius:14px;
+
+  background:#f7f9fc;
+
+  color:#334155;
+
+  font-size:13px;
+
+  border:1px solid #edf1f6;
+}
+
+.feature-icon{
+  width:37px;
+  height:37px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:10px;
+
+  background:white;
+
+  font-size:18px;
+}
+
+
+/* =====================================================
+   ABOUT SECTION
+===================================================== */
+
+.about-section{
+  max-width:1080px;
+
+  margin:-40px auto 0;
+
+  padding:0 18px;
+
+  position:relative;
+  z-index:5;
+}
+
+.about-card{
+  padding:32px;
+
+  background:white;
+
+  border:1px solid #e2e8f0;
+
+  border-radius:25px;
+
+  box-shadow:
+    0 18px 55px rgba(15,23,42,.09);
+}
+
+.about-top{
+  display:flex;
+  align-items:center;
+  gap:15px;
+
+  margin-bottom:18px;
+}
+
+.about-icon{
+  width:55px;
+  height:55px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:16px;
+
+  background:#eef5ff;
+
+  font-size:27px;
+}
+
+.about-card h2{
+  color:#123f75;
+  font-size:27px;
 }
 
 .about-card p{
-  margin-top:10px;
-
   color:#64748b;
+  line-height:1.75;
+  font-size:15px;
+}
 
-  line-height:1.7;
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  gap:12px;
+
+  margin-top:22px;
+}
+
+.about-item{
+  padding:17px;
+
+  border-radius:15px;
+
+  background:#f8fafc;
+
+  border:1px solid #edf1f6;
+}
+
+.about-item strong{
+  display:block;
+
+  color:#174a8b;
+
   font-size:14px;
 }
 
-/* =========================
-   PROCESS
-========================= */
+.about-item span{
+  display:block;
 
-.process{
-  padding:100px 7%;
+  margin-top:5px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #f0f7ff,
-      #ffffff
-    );
+  color:#64748b;
+
+  font-size:12px;
+
+  line-height:1.5;
 }
 
-.process-inner{
-  max-width:1100px;
-  margin:auto;
-}
 
-.process-grid{
+/* =====================================================
+   SERVICE STATS
+===================================================== */
+
+.stats{
+  max-width:1080px;
+
+  margin:30px auto 0;
+
+  padding:0 18px;
+
   display:grid;
 
-  grid-template-columns:
-    repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
 
   gap:16px;
 }
 
-.process-card{
-  padding:25px;
+.stat{
+  padding:23px;
 
   background:white;
 
-  border-radius:22px;
+  border:1px solid #e2e8f0;
 
-  border:1px solid #e1e8f0;
+  border-radius:20px;
 
-  box-shadow:0 12px 35px rgba(15,23,42,.06);
+  box-shadow:0 14px 40px rgba(15,23,42,.06);
 
-  position:relative;
+  transition:.25s;
 }
 
-.process-number{
-  color:#1769e0;
+.stat:hover{
+  transform:translateY(-5px);
 
-  font-size:12px;
-  font-weight:900;
-
-  letter-spacing:1px;
+  box-shadow:
+    0 20px 45px rgba(15,23,42,.1);
 }
 
-.process-card h3{
-  margin-top:14px;
+.stat-icon{
+  width:46px;
+  height:46px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  background:#eef5ff;
+
+  font-size:22px;
+}
+
+.stat h3{
+  margin-top:12px;
 
   color:#123f75;
+
+  font-size:17px;
 }
 
-.process-card p{
-  margin-top:8px;
+.stat p{
+  margin-top:5px;
 
   color:#64748b;
 
   font-size:13px;
-
-  line-height:1.6;
 }
 
-/* =========================
-   MAIN SERVICE AREA
-========================= */
 
-.services{
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container{
   max-width:1080px;
 
   margin:auto;
 
-  padding:100px 18px;
+  padding:80px 18px;
 }
 
-.card{
-  padding:32px;
+.section-title{
+  text-align:center;
 
-  margin-bottom:25px;
+  margin-bottom:42px;
+}
+
+.section-label{
+  color:#1769e0;
+
+  font-size:12px;
+
+  font-weight:850;
+
+  letter-spacing:1.5px;
+}
+
+.section-title h2{
+  margin-top:8px;
+
+  color:#102f52;
+
+  font-size:39px;
+}
+
+.section-title p{
+  margin-top:9px;
+
+  color:#64748b;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card{
+  padding:30px;
+
+  margin-bottom:24px;
 
   background:white;
 
   border:1px solid #e1e8f0;
 
-  border-radius:26px;
+  border-radius:24px;
 
   box-shadow:
     0 15px 50px rgba(15,23,42,.06);
@@ -710,25 +805,28 @@ header{
 .card-title{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:14px;
 
   margin-bottom:25px;
 }
 
 .number{
-  width:48px;
-  height:48px;
+  width:47px;
+  height:47px;
+
+  flex-shrink:0;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:15px;
+  border-radius:14px;
 
-  background:#eaf2ff;
   color:#1769e0;
 
-  font-weight:900;
+  background:#eaf2ff;
+
+  font-weight:850;
 }
 
 .card-title h3{
@@ -744,31 +842,28 @@ header{
   font-size:12px;
 }
 
-/* =========================
+
+/* =====================================================
    UPLOAD
-========================= */
+===================================================== */
 
 .upload-box{
-  padding:45px 20px;
+  padding:43px 20px;
 
   text-align:center;
 
   border:2px dashed #9ebfe8;
 
-  border-radius:22px;
+  border-radius:20px;
 
   background:
-    radial-gradient(
-      circle at 50% 0,
-      #edf6ff,
-      transparent 55%
-    ),
+    radial-gradient(circle at 50% 0,#edf6ff,transparent 55%),
     #f8fbff;
 }
 
 .upload-icon{
-  width:82px;
-  height:82px;
+  width:80px;
+  height:80px;
 
   margin:auto;
 
@@ -776,31 +871,25 @@ header{
   align-items:center;
   justify-content:center;
 
-  border-radius:25px;
+  border-radius:23px;
 
   background:#dbeafe;
 
-  font-size:38px;
-
-  animation:float 3s ease-in-out infinite;
+  font-size:36px;
 }
 
 .upload-box h3{
-  margin-top:17px;
+  margin-top:16px;
 
   color:#174a8b;
 }
 
 .upload-box p{
-  max-width:550px;
-
-  margin:7px auto 0;
+  margin-top:6px;
 
   color:#64748b;
 
   font-size:13px;
-
-  line-height:1.6;
 }
 
 .file-input{
@@ -813,7 +902,7 @@ header{
 
   border:1px solid #d5dee9;
 
-  border-radius:11px;
+  border-radius:10px;
 
   background:white;
 }
@@ -826,12 +915,17 @@ header{
 
   margin:20px auto;
 
-  border-radius:18px;
+  border-radius:17px;
 
   border:1px solid #dbe3ed;
 
-  box-shadow:0 10px 30px rgba(15,23,42,.1);
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
+
+
+/* =====================================================
+   LOADER
+===================================================== */
 
 .loader{
   display:none;
@@ -850,9 +944,16 @@ header{
   animation:spin .8s linear infinite;
 }
 
-/* =========================
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =====================================================
    RESULT
-========================= */
+===================================================== */
 
 .result{
   display:none;
@@ -863,25 +964,27 @@ header{
 
   border:1px solid #bfdbfe;
 
-  border-radius:18px;
+  border-radius:17px;
 
   background:#f5f9ff;
 
-  line-height:1.8;
+  line-height:1.9;
 }
 
 .result-title{
+  margin-bottom:10px;
+
   color:#123f75;
 
   font-size:18px;
-  font-weight:900;
+
+  font-weight:850;
 }
 
 .result-grid{
   display:grid;
 
-  grid-template-columns:
-    repeat(2,1fr);
+  grid-template-columns:repeat(2,1fr);
 
   gap:12px;
 
@@ -889,11 +992,11 @@ header{
 }
 
 .result-item{
-  padding:15px;
+  padding:14px;
 
   background:white;
 
-  border-radius:13px;
+  border-radius:12px;
 
   border:1px solid #e0e7ef;
 }
@@ -922,18 +1025,59 @@ header{
   background:#fee2e2;
 
   font-size:11px;
+
+  font-weight:850;
 }
 
-/* =========================
+.medium{
+  display:inline-block;
+
+  padding:3px 10px;
+
+  border-radius:20px;
+
+  color:#a16207;
+
+  background:#fef3c7;
+
+  font-size:11px;
+
+  font-weight:850;
+}
+
+.low{
+  display:inline-block;
+
+  padding:3px 10px;
+
+  border-radius:20px;
+
+  color:#166534;
+
+  background:#dcfce7;
+
+  font-size:11px;
+
+  font-weight:850;
+}
+
+.invalid-result{
+  border-color:#fecaca;
+
+  background:#fff7f7;
+}
+
+
+/* =====================================================
    LOCATION
-========================= */
+===================================================== */
 
 .location-box{
-  padding:25px;
+  padding:23px;
 
   border:1px solid #bbf7d0;
 
-  border-radius:21px;
+  border-radius:20px;
 
   background:
     linear-gradient(
@@ -968,6 +1112,8 @@ header{
 
 .location-header h4{
   color:#166534;
+
+  font-size:17px;
 }
 
 .location-header p{
@@ -984,14 +1130,6 @@ header{
   color:white;
 
   background:#16803c;
-
-  padding:14px 20px;
-
-  border:0;
-
-  border-radius:12px;
-
-  font-weight:800;
 }
 
 .address{
@@ -1010,7 +1148,9 @@ header{
 
 .address-title{
   color:#166534;
-  font-weight:900;
+
+  font-weight:850;
+
   margin-bottom:8px;
 }
 
@@ -1022,9 +1162,10 @@ header{
   font-size:12px;
 }
 
-/* =========================
-   FORM
-========================= */
+
+/* =====================================================
+   FORMS
+===================================================== */
 
 label{
   display:block;
@@ -1034,7 +1175,8 @@ label{
   color:#334155;
 
   font-size:14px;
-  font-weight:800;
+
+  font-weight:750;
 }
 
 select,
@@ -1046,13 +1188,13 @@ textarea{
 
   border:1px solid #ccd6e2;
 
-  border-radius:12px;
+  border-radius:11px;
 
   outline:none;
 
   background:white;
 
-  font:inherit;
+  font-size:14px;
 }
 
 select:focus,
@@ -1077,18 +1219,14 @@ textarea{
 
   background:#ed7800;
 
-  padding:14px 20px;
-
-  border:0;
-
-  border-radius:12px;
-
-  font-weight:800;
+  box-shadow:
+    0 8px 20px rgba(237,120,0,.2);
 }
 
-/* =========================
-   TRACK
-========================= */
+
+/* =====================================================
+   TRACKING
+===================================================== */
 
 .track-row{
   display:flex;
@@ -1106,32 +1244,89 @@ textarea{
   color:white;
 
   background:#1769e0;
-
-  padding:14px 20px;
-
-  border:0;
-
-  border-radius:12px;
-
-  font-weight:800;
 }
 
-/* =========================
+.timeline{
+  position:relative;
+
+  margin-top:25px;
+
+  padding-left:30px;
+}
+
+.timeline:before{
+  content:"";
+
+  position:absolute;
+
+  left:7px;
+
+  top:6px;
+
+  bottom:7px;
+
+  width:3px;
+
+  background:#dbeafe;
+}
+
+.timeline-item{
+  position:relative;
+
+  margin-bottom:25px;
+}
+
+.timeline-dot{
+  position:absolute;
+
+  left:-30px;
+
+  top:3px;
+
+  width:18px;
+  height:18px;
+
+  border:4px solid #dbeafe;
+
+  border-radius:50%;
+
+  background:#1769e0;
+}
+
+.timeline-item h4{
+  color:#174a8b;
+}
+
+.timeline-item p{
+  margin-top:3px;
+
+  color:#64748b;
+
+  font-size:13px;
+}
+
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
-  padding:60px 20px;
+  padding:55px 20px;
 
   text-align:center;
 
   color:white;
 
-  background:#102f52;
+  background:
+    linear-gradient(
+      135deg,
+      #102f52,
+      #071c35
+    );
 }
 
 footer h2{
-  font-size:28px;
+  font-size:27px;
 }
 
 footer p{
@@ -1142,92 +1337,19 @@ footer p{
   font-size:13px;
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
 
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(25px);
-  }
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:scale(.92);
-  }
-
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-@keyframes float{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-8px);
-  }
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-@keyframes waveFlag{
-  0%,100%{
-    transform:
-      perspective(700px)
-      rotateY(0deg)
-      skewY(0deg);
-  }
-
-  25%{
-    transform:
-      perspective(700px)
-      rotateY(-8deg)
-      skewY(1deg);
-  }
-
-  50%{
-    transform:
-      perspective(700px)
-      rotateY(10deg)
-      skewY(-1deg);
-  }
-
-  75%{
-    transform:
-      perspective(700px)
-      rotateY(-6deg)
-      skewY(1deg);
-  }
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:900px){
+@media(max-width:850px){
 
   .hero{
     flex-direction:column;
 
     text-align:center;
 
-    padding-top:130px;
+    padding:65px 20px 80px;
   }
 
   .hero-content{
@@ -1238,29 +1360,27 @@ footer p{
     justify-content:center;
   }
 
-  .flag-area{
-    transform:scale(.85);
-
-    margin-top:-20px;
+  .hero-right{
+    width:100%;
+    max-width:370px;
   }
 
   .about-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .process-grid{
-    grid-template-columns:
-      repeat(2,1fr);
+  .stats{
+    grid-template-columns:1fr;
   }
 }
 
-@media(max-width:600px){
+@media(max-width:550px){
 
   header{
     padding:0 18px;
   }
 
-  .status{
+  .online{
     display:none;
   }
 
@@ -1271,44 +1391,31 @@ footer p{
   .brand-icon{
     width:40px;
     height:40px;
+    font-size:21px;
   }
 
   .hero{
-    min-height:auto;
-
-    padding:
-      120px 20px
-      50px;
+    min-height:600px;
   }
 
   .hero h1{
-    font-size:46px;
-    letter-spacing:-2.5px;
+    font-size:43px;
+    letter-spacing:-2px;
   }
 
-  .hero-description{
+  .hero-text{
     font-size:15px;
   }
 
-  .flag-area{
-    width:320px;
-    height:430px;
-
-    transform:scale(.72);
-
-    margin-top:-40px;
-    margin-bottom:-50px;
-  }
-
-  .process-grid{
-    grid-template-columns:1fr;
-  }
-
   .card{
-    padding:21px;
+    padding:20px;
   }
 
-  .result-grid{
+  .about-card{
+    padding:22px;
+  }
+
+  .about-grid{
     grid-template-columns:1fr;
   }
 
@@ -1319,15 +1426,130 @@ footer p{
   .track-row button{
     width:100%;
   }
+
+  .result-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-title h2{
+    font-size:30px;
+  }
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+
+<!-- =====================================================
+     OPENING INDIAN FLAG
+===================================================== -->
+
+<div id="flagIntro">
+
+  <div class="flag-scene">
+
+    <div class="flag-pole"></div>
+
+    <svg
+      class="india-flag"
+      viewBox="0 0 600 400"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+
+      <!-- SAFFRON -->
+      <rect
+        x="0"
+        y="0"
+        width="600"
+        height="133.33"
+        fill="#FF9933"
+      />
+
+      <!-- WHITE -->
+      <rect
+        x="0"
+        y="133.33"
+        width="600"
+        height="133.33"
+        fill="#FFFFFF"
+      />
+
+      <!-- GREEN -->
+      <rect
+        x="0"
+        y="266.66"
+        width="600"
+        height="133.34"
+        fill="#138808"
+      />
+
+      <!-- ASHOKA CHAKRA -->
+      <g
+        transform="translate(300 200)"
+        fill="none"
+        stroke="#000080"
+      >
+
+        <circle
+          cx="0"
+          cy="0"
+          r="58"
+          stroke-width="5"
+        />
+
+        <circle
+          cx="0"
+          cy="0"
+          r="7"
+          stroke-width="4"
+        />
+
+        <!-- EXACTLY 24 SPOKES -->
+
+        <g stroke-width="3">
+
+          <line x1="0" y1="-7" x2="0" y2="-58"/>
+          <line x1="1.81" y1="-6.76" x2="15" y2="-56.03"/>
+          <line x1="3.5" y1="-6.06" x2="29" y2="-50.23"/>
+          <line x1="4.95" y1="-4.95" x2="41.01" y2="-41.01"/>
+          <line x1="6.06" y1="-3.5" x2="50.23" y2="-29"/>
+          <line x1="6.76" y1="-1.81" x2="56.03" y2="-15"/>
+          <line x1="7" y1="0" x2="58" y2="0"/>
+          <line x1="6.76" y1="1.81" x2="56.03" y2="15"/>
+          <line x1="6.06" y1="3.5" x2="50.23" y2="29"/>
+          <line x1="4.95" y1="4.95" x2="41.01" y2="41.01"/>
+          <line x1="3.5" y1="6.06" x2="29" y2="50.23"/>
+          <line x1="1.81" y1="6.76" x2="15" y2="56.03"/>
+
+          <line x1="0" y1="7" x2="0" y2="58"/>
+          <line x1="-1.81" y1="6.76" x2="-15" y2="56.03"/>
+          <line x1="-3.5" y1="6.06" x2="-29" y2="50.23"/>
+          <line x1="-4.95" y1="4.95" x2="-41.01" y2="41.01"/>
+          <line x1="-6.06" y1="3.5" x2="-50.23" y2="29"/>
+          <line x1="-6.76" y1="1.81" x2="-56.03" y2="15"/>
+          <line x1="-7" y1="0" x2="-58" y2="0"/>
+          <line x1="-6.76" y1="-1.81" x2="-56.03" y2="-15"/>
+          <line x1="-6.06" y1="-3.5" x2="-50.23" y2="-29"/>
+          <line x1="-4.95" y1="-4.95" x2="-41.01" y2="-41.01"/>
+          <line x1="-3.5" y1="-6.06" x2="-29" y2="-50.23"/>
+          <line x1="-1.81" y1="-6.76" x2="-15" y2="-56.03"/>
+
+        </g>
+
+      </g>
+
+    </svg>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -1343,51 +1565,42 @@ footer p{
 
   </div>
 
-  <div class="status">
-
-    <span class="status-dot"></span>
-
+  <div class="online">
+    <span class="online-dot"></span>
     Civic AI Online
-
   </div>
 
 </header>
 
 
-<!-- =========================
-     TOP INTRO
-========================= -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
   <div class="hero-content">
 
-    <div class="eyebrow">
+    <div class="badge">
       🇮🇳 SMART CIVIC INDIA
     </div>
 
     <h1>
-      Meet
+      Smarter Cities.
       <br>
-      <span>Nagar-AI.</span>
+      <span>Better Communities.</span>
     </h1>
 
-    <p class="hero-description">
+    <p class="hero-text">
 
       <strong>Nagar-AI</strong> is an AI-powered civic
       complaint platform designed to make reporting
-      everyday city problems easier, faster and smarter.
+      public problems faster, simpler and smarter.
 
       Citizens can upload a photo of a civic issue,
-      use AI to identify the problem, detect its location,
-      generate a structured complaint and track it.
-
-      <br><br>
-
-      From potholes and garbage to broken streetlights,
-      water leakage and damaged roads —
-      <strong>Nagar-AI connects citizens with smarter
-      civic reporting.</strong>
+      let AI analyze the image, detect the type of
+      problem, capture its location and generate a
+      structured complaint.
 
     </p>
 
@@ -1395,18 +1608,16 @@ footer p{
 
       <button
         class="primary"
-        onclick="goTo('report')">
-
+        onclick="goTo('report')"
+      >
         📸 Report a Problem
-
       </button>
 
       <button
         class="secondary"
-        onclick="goTo('track')">
-
+        onclick="goTo('track')"
+      >
         🔎 Track Complaint
-
       </button>
 
     </div>
@@ -1414,203 +1625,44 @@ footer p{
   </div>
 
 
-  <!-- WAVING INDIAN FLAG -->
+  <div class="hero-right">
 
-  <div class="flag-area">
+    <div class="hero-card">
 
-    <div class="flag-pole"></div>
+      <div class="hero-card-top">
 
-    <div class="flag-top"></div>
-
-    <div class="flag">
-
-      <div class="stripe saffron"></div>
-
-      <div class="stripe white">
-
-        <div class="chakra">
-
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-          <div class="spoke"></div>
-
-        </div>
-
-      </div>
-
-      <div class="stripe green"></div>
-
-    </div>
-
-    <div class="flag-label">
-      🇮🇳 Technology for a Better India
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     WHAT IS NAGAR-AI
-========================= -->
-
-<section class="about">
-
-  <div class="about-inner">
-
-    <div class="section-heading">
-
-      <div class="section-tag">
-        WHAT IS NAGAR-AI?
-      </div>
-
-      <h2>
-        Making Civic Reporting Smarter
-      </h2>
-
-      <p>
-        Nagar-AI simplifies the process of reporting
-        civic problems by combining artificial intelligence,
-        location services and structured complaint generation.
-      </p>
-
-    </div>
-
-
-    <div class="about-grid">
-
-      <div class="about-card">
-
-        <div class="about-icon">
+        <div class="robot">
           🤖
         </div>
 
-        <h3>
-          AI-Powered Detection
-        </h3>
-
-        <p>
-          Upload a photo of a civic problem and
-          Nagar-AI can analyze the image and identify
-          the type of issue.
-        </p>
+        <div class="live">
+          ● AI ACTIVE
+        </div>
 
       </div>
 
+      <h3>
+        How Nagar-AI Works
+      </h3>
 
-      <div class="about-card">
-
-        <div class="about-icon">
-          📍
-        </div>
-
-        <h3>
-          Location Intelligence
-        </h3>
-
-        <p>
-          Location services help identify where
-          the civic issue was reported so that
-          the complaint contains useful location information.
-        </p>
-
+      <div class="feature">
+        <div class="feature-icon">📷</div>
+        AI analyzes the uploaded image
       </div>
 
-
-      <div class="about-card">
-
-        <div class="about-icon">
-          📝
-        </div>
-
-        <h3>
-          Smart Complaints
-        </h3>
-
-        <p>
-          Instead of writing everything manually,
-          citizens can generate a structured complaint
-          using the information collected by the platform.
-        </p>
-
+      <div class="feature">
+        <div class="feature-icon">📍</div>
+        Location can be detected
       </div>
 
-
-      <div class="about-card">
-
-        <div class="about-icon">
-          🏛️
-        </div>
-
-        <h3>
-          Department Routing
-        </h3>
-
-        <p>
-          The identified category can help determine
-          which civic department should handle the
-          reported problem.
-        </p>
-
+      <div class="feature">
+        <div class="feature-icon">📝</div>
+        Complaint can be generated
       </div>
 
-
-      <div class="about-card">
-
-        <div class="about-icon">
-          🎫
-        </div>
-
-        <h3>
-          Complaint Tracking
-        </h3>
-
-        <p>
-          Citizens can use a complaint ID to check
-          the progress of a submitted civic complaint.
-        </p>
-
-      </div>
-
-
-      <div class="about-card">
-
-        <div class="about-icon">
-          🇮🇳
-        </div>
-
-        <h3>
-          Built for Indian Cities
-        </h3>
-
-        <p>
-          Nagar-AI is designed around everyday civic
-          challenges faced by citizens in Indian cities
-          and communities.
-        </p>
-
+      <div class="feature">
+        <div class="feature-icon">🎫</div>
+        Complaint ID for tracking
       </div>
 
     </div>
@@ -1620,101 +1672,67 @@ footer p{
 </section>
 
 
-<!-- =========================
-     HOW IT WORKS
-========================= -->
+<!-- =====================================================
+     ABOUT NAGAR-AI
+===================================================== -->
 
-<section class="process">
+<section class="about-section">
 
-  <div class="process-inner">
+  <div class="about-card">
 
-    <div class="section-heading">
+    <div class="about-top">
 
-      <div class="section-tag">
-        HOW IT WORKS
+      <div class="about-icon">
+        🏙️
       </div>
 
-      <h2>
-        From Photo to Complaint
-      </h2>
-
-      <p>
-        Four simple steps turn a civic problem
-        into a structured report.
-      </p>
+      <div>
+        <h2>
+          What is Nagar-AI?
+        </h2>
+      </div>
 
     </div>
 
+    <p>
+      Nagar-AI connects citizens with smarter civic
+      reporting. Instead of trying to figure out which
+      department should receive a complaint, citizens
+      can simply upload a photograph of the problem.
+      Our AI analyzes the image and helps identify the
+      civic issue, its priority and the appropriate
+      department. The platform can then use the detected
+      information to create a structured complaint.
+    </p>
 
-    <div class="process-grid">
+    <div class="about-grid">
 
-      <div class="process-card">
-
-        <div class="process-number">
-          STEP 01
-        </div>
-
-        <h3>
-          📸 Upload
-        </h3>
-
-        <p>
-          Upload a photo showing the civic problem.
-        </p>
-
+      <div class="about-item">
+        <strong>🤖 AI Detection</strong>
+        <span>
+          Understands what is actually visible in an uploaded image.
+        </span>
       </div>
 
-
-      <div class="process-card">
-
-        <div class="process-number">
-          STEP 02
-        </div>
-
-        <h3>
-          🤖 Analyze
-        </h3>
-
-        <p>
-          Nagar-AI sends the image to the backend
-          for AI-based analysis.
-        </p>
-
+      <div class="about-item">
+        <strong>📍 Location</strong>
+        <span>
+          Helps capture the location of the reported issue.
+        </span>
       </div>
 
-
-      <div class="process-card">
-
-        <div class="process-number">
-          STEP 03
-        </div>
-
-        <h3>
-          📍 Locate
-        </h3>
-
-        <p>
-          Detect the location of the reported civic issue.
-        </p>
-
+      <div class="about-item">
+        <strong>📝 Smart Reporting</strong>
+        <span>
+          Converts information into a structured complaint.
+        </span>
       </div>
 
-
-      <div class="process-card">
-
-        <div class="process-number">
-          STEP 04
-        </div>
-
-        <h3>
-          🎫 Track
-        </h3>
-
-        <p>
-          Generate a complaint and use its ID
-          for tracking.
-        </p>
-
+      <div class="about-item">
+        <strong>🎫 Tracking</strong>
+        <span>
+          Gives citizens a complaint ID for future tracking.
+        </span>
       </div>
 
     </div>
@@ -1724,15 +1742,77 @@ footer p{
 </section>
 
 
-<!-- =========================
-     CIVIC SERVICES
-========================= -->
+<!-- =====================================================
+     FEATURES
+===================================================== -->
 
-<main class="services">
+<section class="stats">
 
-  <div class="section-heading">
+  <div class="stat">
 
-    <div class="section-tag">
+    <div class="stat-icon">
+      🤖
+    </div>
+
+    <h3>
+      Real Image Analysis
+    </h3>
+
+    <p>
+      The backend can analyze the uploaded image instead
+      of automatically assuming every photo is a pothole.
+    </p>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      📍
+    </div>
+
+    <h3>
+      Smart Location
+    </h3>
+
+    <p>
+      Citizens can allow location access to identify
+      where the civic issue was reported.
+    </p>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      🎫
+    </div>
+
+    <h3>
+      Complaint Tracking
+    </h3>
+
+    <p>
+      Generate a complaint ID and use it to view
+      the current complaint information.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN SERVICES
+===================================================== -->
+
+<main class="container">
+
+  <div class="section-title">
+
+    <div class="section-label">
       CITIZEN SERVICES
     </div>
 
@@ -1741,7 +1821,7 @@ footer p{
     </h2>
 
     <p>
-      Use Nagar-AI to analyze and prepare your civic complaint.
+      Report a problem in a few simple steps.
     </p>
 
   </div>
@@ -1751,7 +1831,8 @@ footer p{
 
   <section
     class="card"
-    id="report">
+    id="report"
+  >
 
     <div class="card-title">
 
@@ -1766,7 +1847,7 @@ footer p{
         </h3>
 
         <p>
-          Upload a photo of the civic issue.
+          Let Nagar-AI inspect the actual photograph.
         </p>
 
       </div>
@@ -1785,10 +1866,10 @@ footer p{
       </h3>
 
       <p>
-        Pothole, garbage, broken streetlight,
-        water leakage, damaged road or another civic issue.
+        Try a photo of a pothole, garbage,
+        broken streetlight, water leakage or another
+        public civic problem.
       </p>
-
 
       <input
         class="file-input"
@@ -1798,30 +1879,25 @@ footer p{
         onchange="previewImage()"
       >
 
-
       <img
         id="preview"
         class="preview"
-        alt="Problem preview"
+        alt="Selected problem"
       >
-
 
       <div
         id="loader"
-        class="loader">
-      </div>
-
+        class="loader"
+      ></div>
 
       <br>
-
 
       <button
         class="primary"
         id="analyzeButton"
-        onclick="analyzeImage()">
-
+        onclick="analyzeImage()"
+      >
         🤖 Analyze With AI
-
       </button>
 
     </div>
@@ -1829,8 +1905,8 @@ footer p{
 
     <div
       id="analysis"
-      class="result">
-    </div>
+      class="result"
+    ></div>
 
   </section>
 
@@ -1848,11 +1924,11 @@ footer p{
       <div>
 
         <h3>
-          Location
+          Detect Location
         </h3>
 
         <p>
-          Detect where the problem is located.
+          Add the location of the civic problem.
         </p>
 
       </div>
@@ -1875,8 +1951,8 @@ footer p{
           </h4>
 
           <p>
-            Allow location access to identify
-            the reported problem's location.
+            Allow location access to find your
+            current coordinates.
           </p>
 
         </div>
@@ -1886,19 +1962,19 @@ footer p{
 
       <button
         class="location-button"
-        onclick="getLocation()">
-
+        onclick="getLocation()"
+      >
         📍 Detect My Location
-
       </button>
 
 
       <div
         class="address"
-        id="address">
+        id="address"
+      >
 
         <div class="address-title">
-          📍 Detected Location
+          📍 Location Detected
         </div>
 
         <div id="addressText">
@@ -1907,8 +1983,8 @@ footer p{
 
         <div
           class="coordinates"
-          id="coordinates">
-        </div>
+          id="coordinates"
+        ></div>
 
       </div>
 
@@ -1934,7 +2010,7 @@ footer p{
         </h3>
 
         <p>
-          Add details and generate your complaint.
+          Add details and generate a structured complaint.
         </p>
 
       </div>
@@ -1948,13 +2024,33 @@ footer p{
 
     <select id="category">
 
-      <option>Road / Pothole</option>
-      <option>Garbage</option>
-      <option>Broken Streetlight</option>
-      <option>Water Leakage</option>
-      <option>Damaged Road</option>
-      <option>Drainage Problem</option>
-      <option>Other</option>
+      <option>
+        Road / Pothole
+      </option>
+
+      <option>
+        Garbage
+      </option>
+
+      <option>
+        Broken Streetlight
+      </option>
+
+      <option>
+        Water Leakage
+      </option>
+
+      <option>
+        Damaged Road
+      </option>
+
+      <option>
+        Drainage Problem
+      </option>
+
+      <option>
+        Other Civic Issue
+      </option>
 
     </select>
 
@@ -1965,23 +2061,22 @@ footer p{
 
     <textarea
       id="description"
-      placeholder="Describe the problem...">
-    </textarea>
+      placeholder="Describe the problem..."
+    ></textarea>
 
 
     <button
       class="orange"
-      onclick="generateComplaint()">
-
+      onclick="generateComplaint()"
+    >
       ✨ Generate Smart Complaint
-
     </button>
 
 
     <div
       id="complaint"
-      class="result">
-    </div>
+      class="result"
+    ></div>
 
   </section>
 
@@ -1990,7 +2085,8 @@ footer p{
 
   <section
     class="card"
-    id="track">
+    id="track"
+  >
 
     <div class="card-title">
 
@@ -2005,7 +2101,7 @@ footer p{
         </h3>
 
         <p>
-          Check the current status of your complaint.
+          Enter your complaint ID.
         </p>
 
       </div>
@@ -2018,14 +2114,13 @@ footer p{
       <input
         type="text"
         id="trackId"
-        placeholder="Enter Complaint ID e.g. NGA-123456"
+        placeholder="Example: NGA-123456"
       >
 
-
-      <button onclick="trackComplaint()">
-
+      <button
+        onclick="trackComplaint()"
+      >
         🔎 Track Complaint
-
       </button>
 
     </div>
@@ -2033,17 +2128,17 @@ footer p{
 
     <div
       id="trackResult"
-      class="result">
-    </div>
+      class="result"
+    ></div>
 
   </section>
 
 </main>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -2052,8 +2147,7 @@ footer p{
   </h2>
 
   <p>
-    AI-powered civic complaint platform
-    for smarter and more connected cities.
+    AI-powered civic reporting for smarter cities.
   </p>
 
   <p>
@@ -2065,17 +2159,17 @@ footer p{
 
 <script>
 
-/* =========================
+/* =====================================================
    BACKEND
-========================= */
+===================================================== */
 
 const BACKEND_URL =
   "https://nagar-ai-jo1n.onrender.com";
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function goTo(id){
 
@@ -2094,9 +2188,9 @@ function goTo(id){
 }
 
 
-/* =========================
-   HTML SAFETY
-========================= */
+/* =====================================================
+   SECURITY
+===================================================== */
 
 function escapeHTML(value){
 
@@ -2110,9 +2204,9 @@ function escapeHTML(value){
 }
 
 
-/* =========================
+/* =====================================================
    IMAGE PREVIEW
-========================= */
+===================================================== */
 
 function previewImage(){
 
@@ -2122,11 +2216,19 @@ function previewImage(){
   const preview =
     document.getElementById("preview");
 
+  const analysis =
+    document.getElementById("analysis");
+
+
+  analysis.style.display="none";
+
+
   if(!input.files.length){
 
     preview.style.display="none";
 
     return;
+
   }
 
 
@@ -2151,11 +2253,13 @@ function previewImage(){
     new FileReader();
 
 
-  reader.onload=function(e){
+  reader.onload=function(event){
 
-    preview.src=e.target.result;
+    preview.src =
+      event.target.result;
 
-    preview.style.display="block";
+    preview.style.display =
+      "block";
 
   };
 
@@ -2165,9 +2269,9 @@ function previewImage(){
 }
 
 
-/* =========================
-   REAL BACKEND AI ANALYSIS
-========================= */
+/* =====================================================
+   AI IMAGE ANALYSIS
+===================================================== */
 
 async function analyzeImage(){
 
@@ -2200,7 +2304,6 @@ async function analyzeImage(){
   const formData =
     new FormData();
 
-
   formData.append(
     "image",
     file
@@ -2215,7 +2318,7 @@ async function analyzeImage(){
 
   button.style.opacity=".6";
 
-  button.innerText="Analyzing...";
+  button.innerText="Analyzing image...";
 
 
   try{
@@ -2238,19 +2341,96 @@ async function analyzeImage(){
 
       throw new Error(
         data.error ||
-        "Backend analysis failed"
+        "AI analysis failed"
       );
 
     }
 
 
+    loader.style.display="none";
+
+    button.disabled=false;
+
+    button.style.opacity="1";
+
+    button.innerText="🤖 Analyze With AI";
+
+
+    /* NON-CIVIC IMAGE */
+
+    if(data.is_civic_issue === false){
+
+      result.className =
+        "result invalid-result";
+
+      result.style.display="block";
+
+
+      result.innerHTML = `
+
+        <div class="result-title">
+          ❌ Not a Civic Issue
+        </div>
+
+        <p style="color:#64748b;">
+          ${escapeHTML(
+            data.message ||
+            "This image does not appear to contain a civic problem."
+          )}
+        </p>
+
+        <p style="
+          margin-top:12px;
+          color:#64748b;
+          font-size:13px;
+        ">
+          Please upload a photo of a pothole,
+          garbage, broken streetlight, water leakage,
+          damaged road or another public civic issue.
+        </p>
+
+      `;
+
+      return;
+
+    }
+
+
+    /* CIVIC ISSUE */
+
+    result.className =
+      "result";
+
     result.style.display="block";
 
 
-    result.innerHTML=`
+    let priorityClass="high";
+
+
+    if(
+      String(data.priority).toLowerCase()
+      === "medium"
+    ){
+
+      priorityClass="medium";
+
+    }
+
+
+    if(
+      String(data.priority).toLowerCase()
+      === "low"
+    ){
+
+      priorityClass="low";
+
+    }
+
+
+    result.innerHTML = `
 
       <div class="result-title">
-        ✅ AI Analysis Complete
+        ✅ Civic Issue Detected
       </div>
 
       <div class="result-grid">
@@ -2274,7 +2454,7 @@ async function analyzeImage(){
             Priority
           </small>
 
-          <strong class="high">
+          <strong class="${priorityClass}">
             ${escapeHTML(data.priority)}
           </strong>
 
@@ -2284,7 +2464,7 @@ async function analyzeImage(){
         <div class="result-item">
 
           <small>
-            Confidence
+            AI Confidence
           </small>
 
           <strong>
@@ -2311,97 +2491,96 @@ async function analyzeImage(){
       </div>
 
 
-      <p
-        style="
-          margin-top:15px;
-          color:#64748b;
-          font-size:13px;
-        ">
-
+      <p style="
+        margin-top:15px;
+        color:#64748b;
+        font-size:13px;
+      ">
         ${escapeHTML(
           data.message ||
-          "Analysis completed successfully."
+          "Civic issue detected successfully."
         )}
-
       </p>
 
     `;
 
 
-    if(data.category){
+    /* Update complaint category */
 
-      const category =
-        document.getElementById("category");
-
-
-      const options =
-        Array.from(category.options);
+    const category =
+      document.getElementById("category");
 
 
-      const matching =
-        options.find(
-          option =>
-            option.value === data.category ||
-            option.text === data.category
-        );
+    const options =
+      Array.from(category.options);
 
 
-      if(matching){
+    const matching =
+      options.find(
+        option =>
+          option.text.trim().toLowerCase()
+          ===
+          String(data.category)
+            .trim()
+            .toLowerCase()
+      );
 
-        category.value =
-          matching.value;
 
-      }
+    if(matching){
+
+      category.value =
+        matching.value;
 
     }
 
+  }
 
-  }catch(error){
+
+  catch(error){
+
+    loader.style.display="none";
+
+    button.disabled=false;
+
+    button.style.opacity="1";
+
+    button.innerText="🤖 Analyze With AI";
+
+
+    result.className="result";
 
     result.style.display="block";
 
 
-    result.innerHTML=`
+    result.innerHTML = `
 
       <div class="result-title">
-        ❌ Connection Error
+        ❌ AI Connection Error
       </div>
 
-      <p style="color:#b91c1c;margin-top:8px;">
+      <p style="color:#b91c1c;">
         ${escapeHTML(error.message)}
       </p>
 
-      <p
-        style="
-          margin-top:8px;
-          color:#64748b;
-          font-size:13px;
-        ">
-
-        Please make sure your Render backend
-        is live and try again.
-
+      <p style="
+        margin-top:8px;
+        color:#64748b;
+        font-size:13px;
+      ">
+        Make sure your Render backend is live,
+        your API key is configured, and try again.
       </p>
 
     `;
 
   }
 
-
-  loader.style.display="none";
-
-  button.disabled=false;
-
-  button.style.opacity="1";
-
-  button.innerText="🤖 Analyze With AI";
-
 }
 
 
-/* =========================
+/* =====================================================
    LOCATION
-========================= */
+===================================================== */
 
 function getLocation(){
 
@@ -2424,7 +2603,7 @@ function getLocation(){
   if(!navigator.geolocation){
 
     addressText.innerText =
-      "Geolocation is not supported by this browser.";
+      "Location is not supported by this browser.";
 
     return;
 
@@ -2442,16 +2621,20 @@ function getLocation(){
         position.coords.longitude;
 
 
-      addressText.innerHTML =
-        "<strong>Location detected successfully.</strong>";
-
+      addressText.innerText =
+        "Location detected successfully.";
 
       coordinates.innerText =
-        "Latitude: " +
-        latitude.toFixed(6) +
-        " | Longitude: " +
-        longitude.toFixed(6);
+        `Latitude: ${latitude.toFixed(6)}
+         | Longitude: ${longitude.toFixed(6)}`;
 
+
+      /* Save location for complaint generation */
+
+      window.nagarLocation = {
+        latitude,
+        longitude
+      };
 
     },
 
@@ -2466,6 +2649,22 @@ function getLocation(){
 
         message =
           "Location permission was denied. Please allow location access.";
+
+      }
+
+
+      if(error.code === 2){
+
+        message =
+          "Location information is unavailable.";
+
+      }
+
+
+      if(error.code === 3){
+
+        message =
+          "Location request timed out.";
 
       }
 
@@ -2486,9 +2685,9 @@ function getLocation(){
 }
 
 
-/* =========================
+/* =====================================================
    GENERATE COMPLAINT
-========================= */
+===================================================== */
 
 function generateComplaint(){
 
@@ -2498,7 +2697,7 @@ function generateComplaint(){
   const description =
     document.getElementById("description").value.trim();
 
-  const complaint =
+  const result =
     document.getElementById("complaint");
 
 
@@ -2515,25 +2714,33 @@ function generateComplaint(){
 
   const complaintId =
     "NGA-" +
-    Date.now()
-      .toString()
-      .slice(-6);
+    Math.floor(
+      100000 +
+      Math.random() * 900000
+    );
 
 
-  const text =
-    `Civic Issue: ${category}
-
-Description:
-${description}
-
-Complaint ID:
-${complaintId}`;
+  const location =
+    window.nagarLocation;
 
 
-  complaint.style.display="block";
+  let locationText =
+    "Location not detected";
 
 
-  complaint.innerHTML=`
+  if(location){
+
+    locationText =
+      `${location.latitude.toFixed(6)},
+       ${location.longitude.toFixed(6)}`;
+
+  }
+
+
+  result.style.display="block";
+
+
+  result.innerHTML = `
 
     <div class="result-title">
       ✅ Complaint Generated
@@ -2566,46 +2773,79 @@ ${complaintId}`;
 
       </div>
 
+
+      <div class="result-item">
+
+        <small>
+          Status
+        </small>
+
+        <strong class="medium">
+          Registered
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <small>
+          Location
+        </small>
+
+        <strong>
+          ${escapeHTML(locationText)}
+        </strong>
+
+      </div>
+
     </div>
 
 
-    <div
-      style="
-        margin-top:15px;
-        padding:15px;
-        background:white;
-        border-radius:12px;
-        border:1px solid #e0e7ef;
-        white-space:pre-line;
-      ">
+    <p style="
+      margin-top:15px;
+      color:#64748b;
+      font-size:13px;
+    ">
+      ${escapeHTML(description)}
+    </p>
 
-      ${escapeHTML(text)}
-
-    </div>
-
-    <p
-      style="
-        margin-top:12px;
-        color:#64748b;
-        font-size:12px;
-      ">
-
-      Save your Complaint ID for tracking.
-
+    <p style="
+      margin-top:10px;
+      color:#64748b;
+      font-size:12px;
+    ">
+      Save your Complaint ID:
+      <strong>${escapeHTML(complaintId)}</strong>
+      for tracking.
     </p>
 
   `;
 
 
-  document.getElementById("trackId").value =
-    complaintId;
+  /* Store locally for this browser */
+
+  const complaint = {
+    id:complaintId,
+    category:category,
+    description:description,
+    location:location || null,
+    status:"Registered",
+    createdAt:new Date().toISOString()
+  };
+
+
+  localStorage.setItem(
+    "nagarComplaint_" + complaintId,
+    JSON.stringify(complaint)
+  );
 
 }
 
 
-/* =========================
+/* =====================================================
    TRACK COMPLAINT
-========================= */
+===================================================== */
 
 function trackComplaint(){
 
@@ -2617,13 +2857,13 @@ function trackComplaint(){
 
 
   const id =
-    input.value.trim();
+    input.value.trim().toUpperCase();
 
 
   if(!id){
 
     alert(
-      "Please enter a Complaint ID."
+      "Please enter a complaint ID."
     );
 
     return;
@@ -2631,13 +2871,54 @@ function trackComplaint(){
   }
 
 
+  const saved =
+    localStorage.getItem(
+      "nagarComplaint_" + id
+    );
+
+
+  if(!saved){
+
+    result.style.display="block";
+
+    result.innerHTML = `
+
+      <div class="result-title">
+        🔎 Complaint Not Found
+      </div>
+
+      <p style="color:#64748b;">
+        No complaint with this ID was found
+        on this device.
+      </p>
+
+      <p style="
+        margin-top:8px;
+        color:#64748b;
+        font-size:12px;
+      ">
+        Make sure you entered the correct
+        Complaint ID.
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  const complaint =
+    JSON.parse(saved);
+
+
   result.style.display="block";
 
 
-  result.innerHTML=`
+  result.innerHTML = `
 
     <div class="result-title">
-      🎫 Complaint Found
+      🎫 Complaint Status
     </div>
 
     <div class="result-grid">
@@ -2649,7 +2930,20 @@ function trackComplaint(){
         </small>
 
         <strong>
-          ${escapeHTML(id)}
+          ${escapeHTML(complaint.id)}
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <small>
+          Category
+        </small>
+
+        <strong>
+          ${escapeHTML(complaint.category)}
         </strong>
 
       </div>
@@ -2661,8 +2955,25 @@ function trackComplaint(){
           Current Status
         </small>
 
-        <strong style="color:#1769e0;">
+        <strong class="medium">
+          ${escapeHTML(complaint.status)}
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <small>
           Submitted
+        </small>
+
+        <strong>
+          ${escapeHTML(
+            new Date(
+              complaint.createdAt
+            ).toLocaleString()
+          )}
         </strong>
 
       </div>
@@ -2670,23 +2981,63 @@ function trackComplaint(){
     </div>
 
 
-    <p
-      style="
-        margin-top:15px;
-        color:#64748b;
-        font-size:13px;
-      ">
+    <div class="timeline">
 
-      Your complaint has been prepared
-      successfully.
+      <div class="timeline-item">
 
-    </p>
+        <div class="timeline-dot"></div>
+
+        <h4>
+          Complaint Registered
+        </h4>
+
+        <p>
+          Your complaint has been created.
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-dot"></div>
+
+        <h4>
+          Awaiting Department Review
+        </h4>
+
+        <p>
+          The complaint is ready for processing.
+        </p>
+
+      </div>
+
+    </div>
 
   `;
 
 }
 
+
+/* =====================================================
+   REMOVE FLAG INTRO
+===================================================== */
+
+setTimeout(function(){
+
+  const intro =
+    document.getElementById("flagIntro");
+
+  if(intro){
+
+    intro.remove();
+
+  }
+
+},6000);
+
 </script>
 
 </body>
 </html>
+
