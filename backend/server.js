@@ -45,21 +45,20 @@ You are Nagar-AI, an AI assistant for reporting civic problems in India.
 
 Analyze the uploaded image carefully.
 
-First determine whether the image actually contains a recognizable civic/public infrastructure problem.
+Determine whether the image actually shows a recognizable civic or public infrastructure problem.
 
-Possible civic problems include:
+Examples:
 - Road pothole
 - Damaged road
-- Garbage/waste
+- Garbage or waste
 - Broken streetlight
 - Water leakage
 - Drainage problem
 - Damaged public property
-- Other genuine civic infrastructure issue
 
-If the image is unrelated to a civic problem, such as a person, animal, food, random object, scenery, selfie, vehicle without a civic issue, etc., DO NOT pretend that it is a civic complaint.
+If it is NOT a civic problem, do not pretend that it is one.
 
-Return ONLY valid JSON in exactly this format:
+Return ONLY valid JSON with these fields:
 
 {
   "isCivicIssue": true,
@@ -70,7 +69,7 @@ Return ONLY valid JSON in exactly this format:
   "message": "Civic issue detected successfully"
 }
 
-If it is NOT a civic problem, return:
+For a non-civic image return:
 
 {
   "isCivicIssue": false,
@@ -81,8 +80,6 @@ If it is NOT a civic problem, return:
   "message": "The uploaded image does not appear to show a recognizable civic problem."
 }
 
-Do not include markdown.
-Do not include ```json.
 Return JSON only.
 `;
 
@@ -143,15 +140,15 @@ Return JSON only.
 
     try {
       result = JSON.parse(text);
-    } catch (parseError) {
-      console.error("Gemini JSON parsing error:", text);
+    } catch (error) {
+      console.error("Invalid Gemini response:", text);
 
       return res.status(500).json({
         error: "AI returned an invalid response."
       });
     }
 
-    return res.json({
+    res.json({
       success: true,
       ...result
     });
@@ -159,7 +156,7 @@ Return JSON only.
   } catch (error) {
     console.error("Server error:", error);
 
-    return res.status(500).json({
+    res.status(500).json({
       error: "Unable to analyze the image. Please try again."
     });
   }
